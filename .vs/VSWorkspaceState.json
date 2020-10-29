@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Expert Finder",
+    "\\Expert Finder\\Expert Finder"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\Expert Finder\\Expert Finder\\bin",
   "PreviewInSolutionExplorer": false
 }
