@@ -1,0 +1,3 @@
+C:\Users\rowle\source\repos\Quaranteam\Expert Finder\Expert Finder\obj\Debug\Expert Finder.njsprojAssemblyReference.cache
+C:\Users\rowle\source\repos\Quaranteam\Expert Finder\Expert Finder\obj\Debug\Expert Finder.njsproj.CoreCompileInputs.cache
+C:\Users\rowle\source\repos\Quaranteam\Expert Finder\Expert Finder\bin\Microsoft.NodejsTools.WebRole.dll

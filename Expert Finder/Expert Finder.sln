@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Expert Finder", "NodejsWebApp1\Expert Finder.njsproj", "{83FDE079-E282-443B-9895-A9E742F37A20}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Expert Finder", "Expert Finder\Expert Finder.njsproj", "{44B289B5-9F96-400A-AB4C-F8B1698B88EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{83FDE079-E282-443B-9895-A9E742F37A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83FDE079-E282-443B-9895-A9E742F37A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83FDE079-E282-443B-9895-A9E742F37A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83FDE079-E282-443B-9895-A9E742F37A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B289B5-9F96-400A-AB4C-F8B1698B88EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B289B5-9F96-400A-AB4C-F8B1698B88EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B289B5-9F96-400A-AB4C-F8B1698B88EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B289B5-9F96-400A-AB4C-F8B1698B88EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {32C037B1-3623-43D1-ACA3-DCDA6319EEA1}
+		SolutionGuid = {CE7006F7-6032-4CDD-A164-2E657373AF8D}
 	EndGlobalSection
 EndGlobal
