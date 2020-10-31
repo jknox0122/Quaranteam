@@ -1,0 +1,51 @@
+<div class="form-block">
+    <button onclick="location.href = '/add_profile';">
+        Add Profile
+    </button>
+</div>
+
+<div class="form-block">
+    <div id='search' action='' method=''>
+        <input id='search' type='text' name='search' value='' placeholder="Search:">
+        <button onclick="search()">
+        </button>
+    </div>
+</div>
+
+<section>
+        <div class="results-table-header">
+            <div class="results-table-header-label">
+                Profiles:
+            </div>
+        </div>
+
+    {{#if profile.length}}
+        <table class="results-table">
+            <thead>
+            <tr>
+                <th hidden="true">ID</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each profile}}
+                <tr>
+                    <td hidden>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>
+                        <button type="button" onclick="window.location.href='/profile/view/{{id}}';" class="table-details tooltip">
+                            <span class="tooltip-text">View this user profile.</span>
+                        </button>
+                        <button type="button" onclick="window.location.href='/profile/update/{{id}}';" class="table-update tooltip">
+                            <span class="tooltip-text">Edit Profile.</span>
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No profiles are available.</p>
+    {{/if}}
+</section>
