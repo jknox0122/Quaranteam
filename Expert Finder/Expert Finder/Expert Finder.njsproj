@@ -29,7 +29,10 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="profile.js">
+    <Content Include="experts.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="search.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\getGit.js">
@@ -40,11 +43,19 @@
     <Content Include="README.md" />
     <Content Include="views\404.hbs" />
     <Content Include="views\500.hbs" />
+    <Content Include="views\experts.hbs" />
     <Content Include="views\layouts\default.hbs" />
     <Content Include="views\layouts\index-1.hbs" />
     <Content Include="views\layouts\main.hbs" />
     <Content Include="views\partials\header.hbs" />
     <Content Include="views\partials\nav.hbs" />
+    <Content Include="views\profile.hbs" />
+    <Content Include="views\results.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\search.hbs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\welcome.hbs" />
   </ItemGroup>
   <ItemGroup>
