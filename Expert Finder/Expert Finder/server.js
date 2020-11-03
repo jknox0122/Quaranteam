@@ -10,6 +10,9 @@ const handlebars = require('express-handlebars');
 const app = express();
 const port = process.env.port || 9175;
 
+//Allows files from the public folder to be accessed
+app.use(express.static('public')); 
+
 //instead of app.set('view engine', 'handlebars');
 app.set('view engine', 'hbs');
 
