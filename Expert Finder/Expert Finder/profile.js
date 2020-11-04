@@ -43,7 +43,7 @@ module.exports = function () {
 			context.expert = results[0];
 		}
 		executeQuery(res, sql, id, mysql, complete, setC);
-
+	}
 	// Name: getSkillsByID
 	// Description: Get skills associated with an expert
 	// Parameters: res - response object, id - the ID of the expert in the database, mysql - node sql object, context - results being passed to handlebars, complete - function to count the number of loops through objects to we know when to render the page
@@ -57,7 +57,7 @@ module.exports = function () {
 			context.skills = results;
 		}
 		executeQuery(res, sql, id, mysql, complete, setC);
-
+	}
 	// Name: getOjectSize
 	// Description: Get the size of an oject
 	// Parameters: Object being counted
