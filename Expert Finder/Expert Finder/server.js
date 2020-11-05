@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 var bodyParser = require('body-parser');
+var mysql = require('./dbcon.js');
 
 //Loads the handlebars module
 const handlebars = require('express-handlebars');
@@ -9,9 +10,6 @@ const handlebars = require('express-handlebars');
 //Creates our express server
 const app = express();
 const port = process.env.port || 9175;
-
-//Allows files from the public folder to be accessed
-app.use(express.static('public')); 
 
 //instead of app.set('view engine', 'handlebars');
 app.set('view engine', 'hbs');
@@ -23,11 +21,14 @@ app.engine('hbs', handlebars({
     defaultLayout: 'main'
 }));
 app.set('port', port);
+app.set('mysql', mysql);
 
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.render('welcome'));
 app.use('/', express.static('public'));
+app.use('/experts', require('./experts.js'));
+app.use('/search', require('./search.js'));
 
 app.use(function (req, res) {
     res.status(404);

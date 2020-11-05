@@ -28,7 +28,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="experts.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="profile.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="search.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="server.js" />
@@ -36,17 +42,23 @@
     <Content Include="README.md" />
     <Content Include="views\404.hbs" />
     <Content Include="views\500.hbs" />
+    <Content Include="views\edit.hbs" />
     <Content Include="views\layouts\default.hbs" />
     <Content Include="views\layouts\main.hbs" />
     <Content Include="views\partials\header.hbs" />
     <Content Include="views\partials\nav.hbs" />
     <Content Include="views\experts.hbs" />
+    <Content Include="views\profile.hbs" />
+    <Content Include="views\public\style.css" />
+    <Content Include="views\results.hbs" />
+    <Content Include="views\search.hbs" />
     <Content Include="views\welcome.hbs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="views\" />
     <Folder Include="views\layouts\" />
     <Folder Include="views\partials\" />
+    <Folder Include="views\public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

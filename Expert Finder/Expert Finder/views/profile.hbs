@@ -1,1 +1,84 @@
-<h1>The Profile Page</h1>
+<section class="info-expert">
+    <h1>Information about <span class="book-title">{{selected_expert.FirstName}} {{selected_expert.LastName}}</span></h1>
+
+    <table class="info-table">
+        <tbody>
+            <tr>
+                <td hidden>{{selected_expert.ExpertID}}</td>
+            </tr>
+            <tr>
+                <th>{{selected_expert.FirstName}} {{selectedExpert.LastName}}<br></th>
+                <td>{{selected_expert.About}}</td>
+            </tr>
+
+            <tr>
+                <th>Email</th>
+                <td>{{selected_expert.ProfileEmail}}</td>
+            </tr>
+            <tr>
+                <th>LinkedIn</th>
+                <td>{{selected_expert.LinkedInLink}}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{selected_expert.TwitterLink}}</td>
+            </tr>
+            <tr>
+                <th>Github</th>
+                <td>{{selected_expert.GithubLink}}</td>
+            </tr>
+            <tr>
+                <th>Industries</th>
+                <td>
+                    {{#if industry.length}}
+                    <ul>
+                        {{#each industry}}
+                        <li class="info-list-item">{{SkillName}} ({{Experience}})</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    None selected
+                    {{/if}}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Skills</th>
+                <td>
+                    {{#if skills.length}}
+                    <ul>
+                        {{#each skills}}
+                        <li>{{SkillName}} ({{Experience}} years)</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                        None selected
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <th>Courses</th>
+                <td>
+                    {{#if courses.length}}
+                    <ul>
+                        {{#each courses}}
+                        <li class="info-list-item">{{SkillName}} ({{Experience}})</li>
+                        {{/each}}
+                    </ul>
+                    {{else}}
+                    None selected
+                    {{/if}}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="/experts">
+        <button type="button" class="btn-back">
+            <i class="fas fa-angle-double-left"></i>Go Back
+        </button>
+    </a>
+</section>
+
+

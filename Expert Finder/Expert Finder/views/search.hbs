@@ -1,1 +1,10 @@
-<h1>The Search Page</h1>
+<table>{{#each skills}}
+    <tr>
+        <td>{{SkillName}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+    <button type="button" onclick="window.location.href='/results/{{ExpertID}}';" class="table-details tooltip">
+        <span class="tooltip-text">Search</span>
+    </button>
