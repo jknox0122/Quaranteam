@@ -59,12 +59,11 @@ module.exports = function () {
 
 	// Name: search
 	// Description: Search for expert
-	function searchAny(res, index, mysql, context, complete) {
-		var sql = "SELECT e.ExpertID, e.FirstName, e.LastName, s.SkillName, es.Experience FROM Experts e "
+	function searchSkill(res, index, mysql, context, complete) {
+		var sql = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
 		sql += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
 		sql += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
-		sql += "INNER JOIN SkillCategory sk ON sk.CategoryID = s.SkillID"
-		sql += "WHERE sk.CategoryID = ? AND s.SkillName = ? ";
+		sql += "WHERE s.SkillID = ? ";
 		sql += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
 		function setC(results) {
 			context.experts = results;
@@ -91,12 +90,13 @@ module.exports = function () {
 	});
 
 	// Return the search results
-	router.get('/results/:category/:skill', function (req, res) {
+	router.get('/results/:skill', function (req, res) {
+		console.log("success");
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
-		context.jsscripts = ["delete.js", "checkbox.js"];
-		searchAny(res, mysql, context, complete);
+		var skill = [req.params.skill];
+		searchSkill(res, skill, mysql, context, complete);
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 1) {

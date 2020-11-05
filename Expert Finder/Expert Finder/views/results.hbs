@@ -1,0 +1,28 @@
+<p>Results:</p>
+    {{#if experts.length}}
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th hidden>ExpertID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Github</th>
+                <th>About</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each experts}}
+            <tr>
+                <td hidden>{{ExpertID}}</td>
+                <td><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
+                <td>{{ProfileEmail}}</td>
+                <td><a href=GithubLink>{{GithubLink}}</a></td>
+                <td>{{About}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No experts included.</p>
+    {{/if}}
