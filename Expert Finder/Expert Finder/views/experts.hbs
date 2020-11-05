@@ -15,10 +15,10 @@
             <tbody>
             {{#each expert}}
                 <tr>
-                    <td>{{ExpertID}}</td>
-                    <td>{{FirstName}} {{LastName}}</td>
+                    <td hidden>{{ExpertID}}</td>
+                    <td><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
                     <td>{{ProfileEmail}}</td>
-                    <td>{{GithubLink}}</td>
+                    <td><a href=GithubLink>{{GithubLink}}</a></td>
                     <td>{{About}}</td>
                     <td>
                         <button type="button" onclick="window.location.href='/experts/view/{{ExpertID}}';" class="table-details tooltip">

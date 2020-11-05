@@ -28,6 +28,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="addEdit.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="experts.js">
       <SubType>Code</SubType>
     </Content>
@@ -40,7 +43,7 @@
     <Content Include="README.md" />
     <Content Include="views\404.hbs" />
     <Content Include="views\500.hbs" />
-    <Content Include="views\edit.hbs" />
+    <Content Include="views\add-edit.hbs" />
     <Content Include="views\layouts\default.hbs" />
     <Content Include="views\layouts\main.hbs" />
     <Content Include="views\partials\header.hbs" />
