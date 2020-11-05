@@ -34,9 +34,7 @@
     <Content Include="profile.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="search.js">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="searchPage.js" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -49,6 +47,9 @@
     <Content Include="views\partials\nav.hbs" />
     <Content Include="views\experts.hbs" />
     <Content Include="views\profile.hbs" />
+    <Content Include="views\public\search.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\public\style.css" />
     <Content Include="views\results.hbs" />
     <Content Include="views\search.hbs" />

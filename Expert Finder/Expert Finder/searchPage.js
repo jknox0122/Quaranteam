@@ -16,7 +16,7 @@ module.exports = function () {
 	}
 
 	// Name: executeQuery
-	// Description: Used to performa  SQL query where the results are needed. Contentmod returns the results so it can be part of the context
+	// Description: Used to perform a SQL query where the results are needed. Contentmod returns the results so it can be part of the context
 	function executeQuery(res, sql, inserts, mysql, complete, contentmod) {
 		mysql.pool.query(sql, inserts, function (error, results, fields) {
 			if (error) {
@@ -28,14 +28,33 @@ module.exports = function () {
 		});
 	}
 
-	// Name: getSkills
-	// Description: Use this function to display which tropes are associated with a book
-	function getSkills(res, mysql, context, complete) {
-		sql = "SELECT * FROM Skills ";
+	// Name: getCategories
+	// Description: Use this function to display the various search categories
+	function getCategories(res, mysql, context, complete) {
+		sql = "SELECT CategoryID AS id, CategoryName AS name FROM SkillCategory";
 		function setC(results) {
-			context.skills = results;
+			context.category = results;
+			console.log(results);
 		}
 		executeQuery(res, sql, 0, mysql, complete, setC);
+	}
+
+	// Name: getSkills
+	// Description: Use this function to display the available skills
+	function getSkill(id, res, mysql, context, complete) {
+		sql = "SELECT SkillID AS id, SkillName AS name FROM Skills WHERE FK_CategoryID = ?";
+		function setC(results) {
+			if (id == 1) {
+				context.skill = results;
+			}
+			else if (id == 2) {
+				context.industry = results;
+			}
+			else if (id == 3) {
+				context.course = results;
+			}
+		}
+		executeQuery(res, sql, id, mysql, complete, setC);
 	}
 
 	// Name: search
@@ -43,8 +62,9 @@ module.exports = function () {
 	function searchAny(res, index, mysql, context, complete) {
 		var sql = "SELECT e.ExpertID, e.FirstName, e.LastName, s.SkillName, es.Experience FROM Experts e "
 		sql += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
-		sql += "LEFT JOIN Skills s ON es.FK_SkillID = s.SkillID ";
-		sql += "WHERE s.SkillName = ?  AND es.Experience > ?";
+		sql += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
+		sql += "INNER JOIN SkillCategory sk ON sk.CategoryID = s.SkillID"
+		sql += "WHERE sk.CategoryID = ? AND s.SkillName = ? ";
 		sql += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
 		function setC(results) {
 			context.experts = results;
@@ -52,23 +72,26 @@ module.exports = function () {
 		executeQuery(res, sql, index, mysql, complete, setC);
 	}
 
-	// Display the tropes currently being used
+	// Display the skills currently in the database so the user can select the skill and search on it.
 	router.get('/', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
-		context.jsscripts = ["delete.js", "filter.js", "search.js"];
+		context.jsscripts = ["search.js"];
 		var mysql = req.app.get('mysql');
-		getSkills(res, mysql, context, complete);
+		getCategories(res, mysql, context, complete);
+		for (var i = 1; i < 4; i++) {
+			getSkill(i, res, mysql, context, complete);
+		}
 		function complete() {
 			callbackCount++;
-			if (callbackCount >= 1) {
+			if (callbackCount >= 4) {
 				res.render('search', context);
 			}
 		}
 	});
 
-	// Allow the user to associated books with tropes
-	router.get('/results', function (req, res) {
+	// Return the search results
+	router.get('/results/:category/:skill', function (req, res) {
 		var callbackCount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');

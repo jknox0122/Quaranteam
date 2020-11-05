@@ -1,10 +1,41 @@
-<table>{{#each skills}}
+<table>
+    {{#each skills}}
+
     <tr>
         <td>{{SkillName}}</td>
     </tr>
     {{/each}}
+
+
 </table>
 
-    <button type="button" onclick="window.location.href='/results/{{ExpertID}}';" class="table-details tooltip">
-        <span class="tooltip-text">Search</span>
-    </button>
+<label for="category">Type of search:</label>
+
+<select name="category" id="category">
+    {{#each category}}
+    <option name='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="skills" id="skill">
+    {{#each skill}}
+    <option name='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="industry" id="industry">
+    {{#each industry}}
+    <option name='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="course" id="course">
+    {{#each course}}
+    <option name='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+
+<button type="button" onclick="window.location.href='/results/{{ExpertID}}';" class="table-details tooltip">
+    <span class="tooltip-text">Search</span>
+</button>
