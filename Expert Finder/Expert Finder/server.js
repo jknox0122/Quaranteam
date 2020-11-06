@@ -1,3 +1,4 @@
+
 //Loads the express module
 const express = require('express');
 const path = require('path');
@@ -22,7 +23,6 @@ app.engine('hbs', handlebars({
 }));
 app.set('port', port);
 app.set('mysql', mysql);
-
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.render('welcome'));

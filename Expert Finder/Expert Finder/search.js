@@ -1,108 +1,54 @@
 module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
-
-	// Name: simpleQuery
-	// Description: Used to execute simple SQL queries where the results don't matter.  Used for insert and delete calls
-	function simpleQuery(sql, inserts, mysql, complete) {
-		mysql.pool.query(sql, inserts, function (error, results, fields) {
-			if (error) {
-				console.log(error)
-				res.write(JSON.stringify(error));
-				res.status(400);
-			}
-			complete();
-		});
-	}
-
-	// Name: executeQuery
-	// Description: Used to perform a SQL query where the results are needed. Contentmod returns the results so it can be part of the context
-	function executeQuery(res, sql, inserts, mysql, complete, contentmod) {
-		mysql.pool.query(sql, inserts, function (error, results, fields) {
-			if (error) {
-				res.write(JSON.stringify(error));
-				res.end();
-			}
-			contentmod(results);
-			complete();
-		});
-	}
+	let sqlC = require('./sqlController.js');
 
 	// Name: getCategories
 	// Description: Use this function to display the various search categories
-	function getCategories(res, mysql, context, complete) {
-		sql = "SELECT CategoryID AS id, CategoryName AS name FROM SkillCategory";
-		function setC(results) {
-			context.category = results;
-			console.log(results);
-		}
-		executeQuery(res, sql, 0, mysql, complete, setC);
+	function getCategories(sqlControl) {
+		query = "SELECT CategoryID AS id, CategoryName AS name FROM SkillCategory";
+		sqlControl.setQuery(query, [0]);
+		sqlControl.executeQuery('category', 2)
 	}
 
 	// Name: getSkills
 	// Description: Use this function to display the available skills
-	function getSkill(id, res, mysql, context, complete) {
-		sql = "SELECT SkillID AS id, SkillName AS name FROM Skills WHERE FK_CategoryID = ?";
-		function setC(results) {
-			if (id == 1) {
-				context.skill = results;
-			}
-			else if (id == 2) {
-				context.industry = results;
-			}
-			else if (id == 3) {
-				context.course = results;
-			}
-		}
-		executeQuery(res, sql, id, mysql, complete, setC);
+	function getSkill(sqlControl, context, index) {
+		query = "SELECT SkillID AS id, SkillName AS name FROM Skills WHERE FK_CategoryID = ?";
+		sqlControl.setQuery(query, index);
+		sqlControl.executeQuery(context, 2)
 	}
 
 	// Name: search
 	// Description: Search for expert
-	function searchSkill(res, index, mysql, context, complete) {
-		var sql = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
-		sql += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
-		sql += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
-		sql += "WHERE s.SkillID = ? ";
-		sql += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
-		function setC(results) {
-			context.experts = results;
-		}
-		executeQuery(res, sql, index, mysql, complete, setC);
+	function searchSkill(sqlControl, index) {
+		var query = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
+		query += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
+		query += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
+		query += "WHERE s.SkillID = ? ";
+		query += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
+		sqlObj.setQuery(query, index);
+		sqlControl.executeQuery('experts', 2)
 	}
 
 	// Display the skills currently in the database so the user can select the skill and search on it.
 	router.get('/', function (req, res) {
-		var callbackCount = 0;
-		var context = {};
-		context.jsscripts = ["search.js"];
 		var mysql = req.app.get('mysql');
-		getCategories(res, mysql, context, complete);
-		for (var i = 1; i < 4; i++) {
-			getSkill(i, res, mysql, context, complete);
-		}
-		function complete() {
-			callbackCount++;
-			if (callbackCount >= 4) {
-				res.render('search', context);
-			}
-		}
+		let sqlControls = new sqlC.sqlController(res, mysql);
+		sqlControls.setUpIteration(4, 'search');
+		getCategories(sqlControls);
+		getSkill(sqlControls, 'skill', 1);
+		getSkill(sqlControls, 'industry', 2)
+		getSkill(sqlControls, 'course', 3)
 	});
 
 	// Return the search results
 	router.get('/results/:skill', function (req, res) {
-		console.log("success");
-		var callbackCount = 0;
-		var context = {};
 		var mysql = req.app.get('mysql');
 		var skill = [req.params.skill];
-		searchSkill(res, skill, mysql, context, complete);
-		function complete() {
-			callbackCount++;
-			if (callbackCount >= 1) {
-				res.render('results', context);
-			}
-		}
+		let sqlControls = new sqlC.sqlController(res, mysql);
+		sqlControls.setUpIteration(1, 'results');
+		searchSkill(sqlCopntrosl, skill);
 	});
 
 

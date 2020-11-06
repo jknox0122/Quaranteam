@@ -34,7 +34,7 @@
     <Content Include="experts.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="profile.js">
+    <Content Include="sqlController.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="search.js" />
