@@ -29,7 +29,7 @@ app.get('/', (req, res) => res.render('welcome'));
 app.use('/', express.static('public'));
 app.use('/experts', require('./experts.js'));
 app.use('/search', require('./search.js'));
-app.use('/add-edit', require('./addEdit.js'));
+app.use('/add-expert', require('./add-expert.js'));
 
 app.use(function (req, res) {
     res.status(404);

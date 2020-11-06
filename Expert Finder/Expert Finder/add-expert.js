@@ -17,25 +17,44 @@ module.exports = function () {
 		});
 	}
 
+	function profileBuilder(sql, prof, txt) {
+		if (prof) {
+			sql.sql1 += ", " + txt;
+			sql.sql2 += ",?";
+			sql.inserts.push(prof);
+		}
+    }
+
 	// Name: addExpert
 	// Description: Add a new expert to the database. 
 	// Parameters - req - node request object, res - node response object, mysql - node mysql object, complete - a function used to call the rest of the insert queries to ensure the expert is added before we update the M:M relationship tables
 	function addExpert(req, res, mysql, complete) {
-		var sql, inserts;
+		var sql1, sql2, sql, inserts;
+		var sqlstuff = {
+			sql1: "INSERT INTO Experts (FirstName, LastName",
+			sql2: " VALUES (?,?",
+			inserts: [req.body.fname, req.body.lname]
+		};
 
-		sql = "INSERT INTO Experts (FirstName, LastName, ProfileEmail, ProfilePicture, About, GithubLink, LinkedInLink, TwitterLink) ";
-		sql += " VALUES(?,?,?,?,?)";
-			inserts = [req.body.firstname, req.body.lastname, req.body.email, req.body.picture, req.body.about, req.body.git, req.body.linkedin, requ.body.twitter];
-		
+		profileBuilder(sqlstuff, req.body.email, "ProfileEmail");
+		profileBuilder(sqlstuff, req.body.twitter, "TwitterLink");
+		profileBuilder(sqlstuff, req.body.linkedin, "LinkedInLink");
+		profileBuilder(sqlstuff, req.body.git, "GithubLink");
+		profileBuilder(sqlstuff, req.body.about, "About");
+
+		sql = sqlstuff.sql1 + ")" + sqlstuff.sql2 + ")";
+		console.log(sql);
+		console.log(sqlstuff.inserts)
+
 		// Run the query
-		mysql.pool.query(sql, inserts, function (error, results, fields) {
+		mysql.pool.query(sql, sqlstuff.inserts, function (error, results, fields) {
 			if (error) {
 				console.log("An error happened!", error);
 				res.write(JSON.stringify(error));
 				res.end();
 			}
 			console.log("No errors here!", inserts);
-			complete(inserts[0]);
+			complete(sqlstuff.inserts[0]);
 		});
 	}
 
@@ -112,21 +131,22 @@ function getSkill(id, res, mysql, context, complete) {
 		function complete() {
 			callbackCount++;
 			if (callbackCount >= 4) {
-				res.render('add-edit', context);
+				res.render('add-expert', context);
 			}
 		}
 	});
 
 	// Add an expert and all relevant information
 	router.post('/', function (req, res) {
+		console.log("Posting");
 		var mysql = req.app.get('mysql');
-		insertExpert(req, res, mysql, complete);
+		addExpert(req, res, mysql, complete);
 		function complete(id) {
 			if (req.body.hasOwnProperty('skill')) {
 				insertSkills(id, req, res, mysql);
 			}
+			res.redirect('/experts');
 		}
-		res.redirect('/experts');
 	});
 
 
