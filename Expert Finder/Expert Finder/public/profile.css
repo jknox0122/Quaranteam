@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  font-size: 100%;
+  line-height: 1.5;
+  background-color: snow;
+}
+
+.frame {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+  font-size: 2rem;
+  background-color: coral;
+}
+
+.main {
+  display: flex;
+  height: 100%;
+  font-size: 2rem;
+}
+
+nav {
+  padding: 1em;
+  width: 35%;
+}
+.profile_pic{
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.profile_info{
+  text-align: center;
+}
+.content {
+  padding: 1em;
+  width: 100%;
+  height: auto;
+}
+
+.language{
+font-size: large;
+border: 1px solid black;
+width: 60%
+}
+
+.experience{
+font-size: large;
+border: 1px solid black;
+width: 60%
+}
+
+.lang_container{
+  width: 50%;
+}
+
+.exp_container{
+  width: 50%;
+}
+
+.table_container{
+  display: flex;
+
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 66px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 15px;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}

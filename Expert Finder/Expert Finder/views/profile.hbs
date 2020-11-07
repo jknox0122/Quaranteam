@@ -1,84 +1,74 @@
-<section class="info-expert">
-    <h1>Information about <span class="book-title">{{selected_expert.FirstName}} {{selected_expert.LastName}}</span></h1>
-
-    <table class="info-table">
-        <tbody>
-            <tr>
-                <td hidden>{{selected_expert.ExpertID}}</td>
-            </tr>
-            <tr>
-                <th>{{selected_expert.FirstName}} {{selectedExpert.LastName}}<br></th>
-                <td>{{selected_expert.About}}</td>
-            </tr>
-
-            <tr>
-                <th>Email</th>
-                <td>{{selected_expert.ProfileEmail}}</td>
-            </tr>
-            <tr>
-                <th>LinkedIn</th>
-                <td><a href='{{selected_expert.LinkedInLink}}'>{{selected_expert.LinkedInLink}}</a></td>
-            </tr>
-            <tr>
-                <th>Twitter</th>
-                <td><a href='{{selected_expert.TwitterLink}}'>{{selected_expert.TwitterLink}}</a></td>
-            </tr>
-            <tr>
-                <th>Github</th>
-                <td><a href='{{selected_expert.GithubLink}}'>{{selected_expert.GithubLink}}</a></td>
-            </tr>
-            <tr>
-                <th>Industries</th>
-                <td>
-                    {{#if industry.length}}
-                    <ul>
-                        {{#each industry}}
-                        <li class="info-list-item">{{SkillName}} ({{Experience}})</li>
-                        {{/each}}
-                    </ul>
-                    {{else}}
-                    None selected
-                    {{/if}}
-                </td>
-            </tr>
-
-            <tr>
-                <th>Skills</th>
-                <td>
-                    {{#if skills.length}}
-                    <ul>
-                        {{#each skills}}
-                        <li>{{SkillName}} ({{Experience}} years)</li>
-                        {{/each}}
-                    </ul>
-                    {{else}}
-                        None selected
-                    {{/if}}
-                </td>
-            </tr>
-            <tr>
-                <th>Courses</th>
-                <td>
-                    {{#if courses.length}}
-                    <ul>
-                        {{#each courses}}
-                        <li class="info-list-item">{{SkillName}} ({{Experience}})</li>
-                        {{/each}}
-                    </ul>
-                    {{else}}
-                    None selected
-                    {{/if}}
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <a href="/experts">
-        <button type="button" class="btn-back">
-            <i class="fas fa-angle-double-left"></i>Go Back
-        </button>
-    </a>
-</section>
-
-
+<link href="/public/profile.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="frame">
+  <header>
+    header content here
+  </header>
+  <main class="main">
+    <nav>
+      <div class="profile_pic">
+          <p1>{profile_picture}}</p1>
+      </div>
+      <div class="profile_info">
+          <p1>{{email}}</p1>
+          <p1>{{personal_site}}</p1>
+          <br>
+          <br>
+          <a href="https://www.facebook.com{{fb_profile}}" class="fa fa-facebook"></a>
+          &nbsp
+          <a href="https://www.twitter.com{{twitter_profile}}" class="fa fa-twitter"></a>
+          <br>
+          <br>
+          <a href="https://linkedin.com{{lnk_profile}}" class="fa fa-linkedin"></a>
+          &nbsp
+          <a href="https://www.linkedin.com{{lnl_profile}}" class="fa fa-linkedin"></a>
+      </div>
+    </nav>
+    <div class="content">
+      <h3>{{name}}</h3>
+      <p1>{{title}}</p1>
+      <br>
+      <p1>{{bio}}</p1>
+  <div class="table_container">
+    <div class=lang_container>
+      <br>
+      <table class='language'>
+        <caption>Languages</caption>
+          <th>Language</th>
+          <th>Experience</th>
+          {{#each language}}
+          <tr>
+            <td>{{language}}</td>
+            <td>{{experience}}</td>
+          </tr>
+          {{/each}}
+        </table>
+    </div>
+    <div class=exp_container>
+      <br>
+      <table class='experience'>
+        <caption>Coursework and Experience</caption>
+          <th>Occupation</th>
+          <th>Experience</th>
+          {{#each occupation}}
+          <tr>
+            <td>{{occupation}}</td>
+            <td>{{experience}}</td>
+          </tr>
+          {{/each}}
+        </table>
+    </div>
+  </div>
+    <div class="projects">
+      <table>
+        <caption>Projects</caption>
+        {{#each projects}}
+          <th>{{project_title}}</th>
+        <tr>
+          <td>{{project_desc}}</td>
+        </tr>
+        {{/each}}
+        </table>
+    </div>
+  </div>
+  </main>
