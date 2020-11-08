@@ -1,6 +1,6 @@
 <label for="category">Type of search:</label>
 
-<select name="category" id="category" onchange="showSearch()" onload="selectFirst()">
+<select name="category" id="category" onchange="showSearch()">
     {{#each category}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
@@ -25,7 +25,7 @@
 </select>
 
 
-<button type="button" onclick="searchSkills()"; class="table-details tooltip">
+<button type="button" onclick="searchSkills();" class="table-details tooltip">
     <span class="tooltip-text">Search</span>
 </button>
 
@@ -36,7 +36,7 @@
         if (cat == 1) {
             document.getElementById("skills").hidden = false;
             document.getElementById("industry").hidden = true;
-            vdocument.getElementById("course").hidden = true;
+            document.getElementById("course").hidden = true;
         }
         else if (cat == 2) {
             document.getElementById("skills").hidden = true;

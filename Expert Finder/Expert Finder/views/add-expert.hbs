@@ -4,38 +4,85 @@
         <label for="fname">First Name:</label>
         <input type="text" name="fname">
         <label for="fname">Last Name:</label>
-        <input type="text" name="lname">
-        <label for="fname">Email:</label>
-        <input type="text" name="email">
+        <input type="text" name="lname"><br>
         <label for="fname">About:</label>
-        <input type="text" name="about">
+        <input type="text" name="about"><br>
+        <label for="fname">Email:</label>
+        <input type="text" name="email"><br>
         <label for="git">Github link:</label>
-        <input type="text" name="git">
+        <input type="text" name="git"><br>
         <label for="linkedin">LinkedIn:</label>
-        <input type="text" name="linkedin">
+        <input type="text" name="linkedin"><br>
         <label for="twitter">Twitter:</label>
-        <input type="text" name="twitter">
-        <input type="submit" value="Add User">
-        <label for="category">Categories</label>
-        <select name="category">
+        <input type="text" name="twitter"><br>
+        <p>Add a skill:</p>
+        <label for="category">Categories</label><br />
+        <select id="category" name="category" onchange="showSearch()">
             {{#each category}}
-            <option value="{{ID}}">{{name}}</option>
+            <option value='{{id}}'>{{name}}</option>
             {{/each}}
-        </select>
-        <select name="skill">
+        </select><br />
+        <label>Skills:</label><br />
+        <select id="skill" name="skill">
             {{#each skill}}
-            <option value="{{ID}}">{{name}}</option>
+            <option value='{{id}}'>{{name}}</option>
             {{/each}}
         </select>
-        <select name="industry">
+        <select hidden id="industry" name="industry">
             {{#each industry}}
-            <option value="{{ID}}">{{name}}</option>
+            <option value="{{id}}">{{name}}</option>
             {{/each}}
         </select>
-        <select name="course">
+        <select hidden id="course" name="course">
             {{#each course}}
-            <option value="{{ID}}">{{name}}</option>
+            <option value="{{id}}">{{name}}</option>
             {{/each}}
         </select>
+        <br />
+        <label>Experience</label><br />
+        <input type="number" />
+
+        <input type="button" value="Add Skill" onclick="addSkill()"><br /><br />
+        <table hidden name="skills" id="skills">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>CategoryID</td>
+                    <td>SkillID</td>
+                    <td>Skill</td>
+                    <td>Experience</td>
+                </tr>
+                <tbody>
+                </tbody>
+            </thead>
+        </table>
+        <input type="submit" value="Add User">
     </fieldset>
 </form>
+<script>
+    function addSkill() {
+        return;
+    }
+    function showSearch() {
+        var cat = document.getElementById("category").value;
+        if (cat == 1) {
+            document.getElementById("skill").hidden = false;
+            document.getElementById("industry").hidden = true;
+            document.getElementById("course").hidden = true;
+        }
+        else if (cat == 2) {
+            document.getElementById("skill").hidden = true;
+            document.getElementById("industry").hidden = false;
+            document.getElementById("course").hidden = true;
+        }
+        else if (cat == 3) {
+            document.getElementById("skill").hidden = true;
+            document.getElementById("industry").hidden = true;
+            document.getElementById("course").hidden = false;
+        }
+    }
+
+ 
+
+
+</script>

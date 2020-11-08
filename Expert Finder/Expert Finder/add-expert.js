@@ -85,9 +85,9 @@ function getSkill(sqlControl, context, index) {
 		let sqlControls = new sqlC.sqlController(res, mysql);
 		sqlControls.setUpIteration(4, 'add-expert');
 		getCategories(sqlControls);
-		getSkill(sqlControls, "skills", 1);
+		getSkill(sqlControls, "skill", 1);
 		getSkill(sqlControls, "industry", 2);
-		getSkill(sqlControls, "courses", 3);
+		getSkill(sqlControls, "course", 3);
 	});
 
 	// Add an expert and all relevant information
