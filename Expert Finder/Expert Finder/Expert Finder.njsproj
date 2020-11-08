@@ -34,6 +34,8 @@
     <Content Include="experts.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\profile.css" />
+    <Content Include="public\style.css" />
     <Content Include="sqlController.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,16 +52,18 @@
     <Content Include="views\partials\nav.hbs" />
     <Content Include="views\experts.hbs" />
     <Content Include="views\profile.hbs" />
-    <Content Include="views\public\style.css" />
     <Content Include="views\results.hbs" />
     <Content Include="views\search.hbs" />
     <Content Include="views\welcome.hbs" />
+    <Content Include="welcome.js">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="public\" />
     <Folder Include="views\" />
     <Folder Include="views\layouts\" />
     <Folder Include="views\partials\" />
-    <Folder Include="views\public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

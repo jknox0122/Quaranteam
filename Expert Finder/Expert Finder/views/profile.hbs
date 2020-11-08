@@ -1,74 +1,81 @@
-<link href="/public/profile.css" rel="stylesheet">
+<link href="/public/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="frame">
-  <header>
-    header content here
-  </header>
   <main class="main">
-    <nav>
-      <div class="profile_pic">
-          <p1>{profile_picture}}</p1>
-      </div>
-      <div class="profile_info">
-          <p1>{{email}}</p1>
-          <p1>{{personal_site}}</p1>
-          <br>
-          <br>
-          <a href="https://www.facebook.com{{fb_profile}}" class="fa fa-facebook"></a>
-          &nbsp
-          <a href="https://www.twitter.com{{twitter_profile}}" class="fa fa-twitter"></a>
-          <br>
-          <br>
-          <a href="https://linkedin.com{{lnk_profile}}" class="fa fa-linkedin"></a>
-          &nbsp
-          <a href="https://www.linkedin.com{{lnl_profile}}" class="fa fa-linkedin"></a>
-      </div>
-    </nav>
-    <div class="content">
-      <h3>{{name}}</h3>
-      <p1>{{title}}</p1>
-      <br>
-      <p1>{{bio}}</p1>
-  <div class="table_container">
-    <div class=lang_container>
-      <br>
-      <table class='language'>
-        <caption>Languages</caption>
-          <th>Language</th>
-          <th>Experience</th>
-          {{#each language}}
-          <tr>
-            <td>{{language}}</td>
-            <td>{{experience}}</td>
-          </tr>
-          {{/each}}
-        </table>
-    </div>
-    <div class=exp_container>
-      <br>
-      <table class='experience'>
-        <caption>Coursework and Experience</caption>
-          <th>Occupation</th>
-          <th>Experience</th>
-          {{#each occupation}}
-          <tr>
-            <td>{{occupation}}</td>
-            <td>{{experience}}</td>
-          </tr>
-          {{/each}}
-        </table>
-    </div>
-  </div>
-    <div class="projects">
-      <table>
-        <caption>Projects</caption>
-        {{#each projects}}
-          <th>{{project_title}}</th>
-        <tr>
-          <td>{{project_desc}}</td>
-        </tr>
-        {{/each}}
-        </table>
-    </div>
-  </div>
-  </main>
+      <nav>
+          <div hidden id="ID">{{selected_expert.ExpertID}}</div>
+          <div class="name">
+              <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
+          </div>
+          <div class="profile_pic">
+              <p1>{Profile Picture}</p1>
+              <br>
+              <br>
+              <p1>About: {{selected_expert.About}}</p1>
+              <br>
+              <br>
+          </div>
+          <div class="profile_info">
+              <p1>{{selected_expert.ProfileEmail}}</p1>
+              <br>
+              <br>
+              <a href="{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
+              &nbsp
+              <a href="{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
+              &nbsp
+              <a href="{{selected_expert.GithubLink}}" class="fa fa-github"></a>
+          </div>
+      </nav>
+      <body>
+          <div class="table_container">
+              {{#if skills.length}}
+              <div class='skills'>
+                  <br>
+                  <table class='skills'>
+                      <caption>Technical Skills</caption>
+                      <th>Skill</th>
+                      <th>Experience</th>
+                      {{#each skills}}
+                      <tr>
+                          <td>{{SkillName}}</td>
+                          <td>{{Experience}}</td>
+                      </tr>
+                      {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+              {{#if industry.length}}
+              <div class='industry'>
+                  <br>
+                  <table class='industry'>
+                      <caption>Industries</caption>
+                      <th>Industry</th>
+                      <th>Experience</th>
+                      {{#each industry}}
+                      <tr>
+                          <td>{{SkillName}}</td>
+                          <td>{{Experience}} years</td>
+                      </tr>
+                      {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+              {{#if courses.length}}
+              <div class='courses'>
+                  <br>
+                  <table class='courses'>
+                      <caption>Courses</caption>
+                      <th>Course</th>
+                      <th>Experience</th>
+                      {{#each course}}
+                      <tr>
+                          <td>{{SkillName}}</td>
+                          <td>{{Experience}} years</td>
+                      </tr>
+                      {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+          </div>
+      </body>
+</main>

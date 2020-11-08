@@ -88,6 +88,7 @@ function getSkill(sqlControl, context, index) {
 		getSkill(sqlControls, "skill", 1);
 		getSkill(sqlControls, "industry", 2);
 		getSkill(sqlControls, "course", 3);
+
 	});
 
 	// Add an expert and all relevant information
