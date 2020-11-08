@@ -1,0 +1,35 @@
+<section>
+
+    {{#if expert.length}}
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>ExpertID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Github</th>
+                    <th>About</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each expert}}
+                <tr>
+                    <td hidden>{{ExpertID}}</td>
+                    <td><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
+                    <td>{{ProfileEmail}}</td>
+                    <td><a href=GithubLink>{{GithubLink}}</a></td>
+                    <td>{{About}}</td>
+                    <td>
+                        <button type="button" onclick="window.location.href='/experts/view/{{ExpertID}}';" class="table-details tooltip">
+                            <span class="tooltip-text">View profile</span>
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No experts included.</p>
+    {{/if}}
+</section>
