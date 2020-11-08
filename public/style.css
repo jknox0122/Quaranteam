@@ -1,0 +1,20 @@
+/* Overall style for main and partials */
+
+#title_header {
+    color: 4B75A9; 
+}
+
+#nav_div {
+    background-color: 4B75A95;
+    margin: 0px;
+    width: 100%;
+    height: 25px;
+}
+
+#add_link {
+    float: right;
+}
+
+#find_link {
+    color: white;
+}

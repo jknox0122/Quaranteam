@@ -1,0 +1,48 @@
+<label for="category">Type of search:</label>
+
+<select name="category" id="category">
+    {{#each category}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="skills" id="skills">
+    {{#each skill}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="industry" id="industry">
+    {{#each industry}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<select name="course" id="course">
+    {{#each course}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+
+<button type="button" onclick="searchSkills()"; class="table-details tooltip">
+    <span class="tooltip-text">Search</span>
+</button>
+
+<script>
+    function searchSkills() {
+        var cat = document.getElementById("category").value;
+        if (cat == 1) {
+            var skill = document.getElementById("skills").value;
+        }
+        else if (cat == 2) {
+            var skill = document.getElementById("industry").value;
+        }
+        else if (cat == 3) {
+            var skill = document.getElementById("course").value;
+        }
+        var query = ("/search/results/" + encodeURIComponent(skill));
+        alert(query);
+        window.location = query;
+    }
+</script>
