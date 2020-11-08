@@ -27,7 +27,7 @@ module.exports = function () {
 		query += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
 		query += "WHERE s.SkillID = ? ";
 		query += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
-		sqlObj.setQuery(query, index);
+		sqlControl.setQuery(query, index);
 		sqlControl.executeQuery('experts', 2)
 	}
 
@@ -48,7 +48,7 @@ module.exports = function () {
 		var skill = [req.params.skill];
 		let sqlControls = new sqlC.sqlController(res, mysql);
 		sqlControls.setUpIteration(1, 'results');
-		searchSkill(sqlCopntrosl, skill);
+		searchSkill(sqlControls, skill);
 	});
 
 

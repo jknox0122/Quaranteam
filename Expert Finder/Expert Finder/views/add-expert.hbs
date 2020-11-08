@@ -16,5 +16,26 @@
         <label for="twitter">Twitter:</label>
         <input type="text" name="twitter">
         <input type="submit" value="Add User">
+        <label for="category">Categories</label>
+        <select name="category">
+            {{#each category}}
+            <option value="{{ID}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <select name="skill">
+            {{#each skill}}
+            <option value="{{ID}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <select name="industry">
+            {{#each industry}}
+            <option value="{{ID}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <select name="course">
+            {{#each course}}
+            <option value="{{ID}}">{{name}}</option>
+            {{/each}}
+        </select>
     </fieldset>
 </form>

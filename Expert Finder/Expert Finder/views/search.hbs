@@ -1,6 +1,6 @@
 <label for="category">Type of search:</label>
 
-<select name="category" id="category">
+<select name="category" id="category" onchange="showSearch()" onload="selectFirst()">
     {{#each category}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
@@ -12,13 +12,13 @@
     {{/each}}
 </select>
 
-<select name="industry" id="industry">
+<select hidden name="industry" id="industry">
     {{#each industry}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<select name="course" id="course">
+<select hidden name="course" id="course">
     {{#each course}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
@@ -30,6 +30,27 @@
 </button>
 
 <script>
+
+    function showSearch() {
+        var cat = document.getElementById("category").value;
+        if (cat == 1) {
+            document.getElementById("skills").hidden = false;
+            document.getElementById("industry").hidden = true;
+            vdocument.getElementById("course").hidden = true;
+        }
+        else if (cat == 2) {
+            document.getElementById("skills").hidden = true;
+            document.getElementById("industry").hidden = false;
+            document.getElementById("course").hidden = true;
+        }
+        else if (cat == 3) {
+            document.getElementById("skills").hidden = true;
+            document.getElementById("industry").hidden = true;
+            document.getElementById("course").hidden = false;
+        }
+        
+    }
+
     function searchSkills() {
         var cat = document.getElementById("category").value;
         if (cat == 1) {
@@ -42,7 +63,6 @@
             var skill = document.getElementById("course").value;
         }
         var query = ("/search/results/" + encodeURIComponent(skill));
-        alert(query);
         window.location = query;
     }
 </script>
