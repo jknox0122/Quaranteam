@@ -18,10 +18,10 @@
               <br>
           </div>
           <div class="profile_info">
-              <p1>{{selected_expert.ProfileEmail}}</p1>
+              <p1>Email: {{selected_expert.ProfileEmail}}</p1>
               <br>
               <br>
-              <a href="{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
+              <a href="http://www.twitter.com/{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
               &nbsp
               <a href="{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
              &nbsp
@@ -30,49 +30,48 @@
       </nav>
       <body>
           <div class="table_container">
-              {{#if skills.length}}
+              {{#if profile_skill.length}}
               <div class='skills'>
                   <br>
                   <table class='skills'>
-                      <caption>Technical Skills</caption>
-                      <th>Skill</th>
-                      <th>Experience</th>
-                      {{#each skills}}
+                      <caption class="results-table-header-label">Technical Skills</caption>
+    
+                      {{#each profile_skill}}
                       <tr>
+<<<<<<< HEAD
                           <td>{{SkillName}}</td>
+=======
+                          <td>{{name}}</td>
+>>>>>>> 3f15f3a8b6008af2ad1464349bffdb3125776c25
                           <td>{{Experience}} years</td>
                       </tr>
                       {{/each}}
                   </table>
               </div>
               {{/if}}
-              {{#if industry.length}}
+              {{#if profile_industry.length}}
               <div class='industry'>
                   <br>
                   <table class='industry'>
-                      <caption>Industries</caption>
-                      <th>Industry</th>
-                      <th>Experience</th>
-                      {{#each industry}}
+                      <caption class="results-table-header-label">Industries</caption>
+                      {{#each profile_industry}}
                       <tr>
-                          <td>{{SkillName}}</td>
+                          <td>{{name}}</td>
                           <td>{{Experience}} years</td>
                       </tr>
                       {{/each}}
                   </table>
               </div>
               {{/if}}
-              {{#if courses.length}}
+              {{#if profile_course.length}}
               <div class='courses'>
                   <br>
                   <table class='courses'>
-                      <caption>Courses</caption>
-                      <th>Course</th>
-                      <th>Experience</th>
-                      {{#each course}}
+                      <caption class="results-table-header-label">Courses</caption>
+                      {{#each profile_course}}
                       <tr>
-                          <td>{{SkillName}}</td>
-                          <td>{{Experience}} years</td>
+                          <td>{{name}}</td>
+                          <td></td>
                       </tr>
                       {{/each}}
                   </table>

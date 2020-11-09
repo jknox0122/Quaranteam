@@ -47,8 +47,12 @@ module.exports = function () {
 		var mysql = req.app.get('mysql');
 		var skill = [req.params.skill];
 		let sqlControls = new sqlC.sqlController(res, mysql);
-		sqlControls.setUpIteration(1, 'results');
+		sqlControls.setUpIteration(5, 'results');
 		searchSkill(sqlControls, skill);
+		getCategories(sqlControls);
+		getSkill(sqlControls, 'skill', 1);
+		getSkill(sqlControls, 'industry', 2)
+		getSkill(sqlControls, 'course', 3)
 	});
 
 

@@ -25,13 +25,12 @@ module.exports = function () {
 	// Parameters: res - response object, id - the ID of the expert, mysql - node sql object, context - results being passed to handlebars, 
 	// complete - function to count the number of loops through objects to we know when to render the page
 	function getSkillsByID(sqlObj, index) {
-		var query = "SELECT s.SkillName, sk.CategoryName, es.Experience, e.ExpertID FROM ExpertSkills es ";
+		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
-		query += "INNER JOIN SkillCategory sk ON sk.CategoryID = s.FK_CategoryID ";
-		query += "WHERE sk.CategoryName = 'Skill' AND e.ExpertID = ? ";
+		query += "WHERE s.FK_CategoryID = 1 AND e.ExpertID = ? ";
 		sqlObj.setQuery(query, index);
-		sqlObj.executeQuery('skills', 2);
+		sqlObj.executeQuery('profile_skill', 2);
 	}
 
 	// Name: getCoursebyID
@@ -39,13 +38,12 @@ module.exports = function () {
 	// Parameters: res - response object, id - the ID of the expert, mysql - node sql object, context - results being passed to handlebars, 
 	// complete - function to count the number of loops through objects to we know when to render the page
 	function getCoursesByID(sqlObj, index) {
-		var query = "SELECT s.SkillName, sk.CategoryName, es.Experience, e.ExpertID FROM ExpertSkills es ";
+		var query = "SELECT s.SkillName as name, es.Experience, e.ExpertID FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
-		query += "INNER JOIN SkillCategory sk ON sk.CategoryID = s.FK_CategoryID ";
-		query += "WHERE sk.CategoryName = 'Course' AND e.ExpertID = ? ";
+		query += "WHERE s.FK_CategoryID = 3 AND e.ExpertID = ? ";
 		sqlObj.setQuery(query, index);
-		sqlObj.executeQuery('courses', 2);
+		sqlObj.executeQuery('profile_course', 2);
 	}
 
 	// Name: getIndustryByID
@@ -53,13 +51,12 @@ module.exports = function () {
 	// Parameters: res - response object, id - the ID of the expert, mysql - node sql object, context - results being passed to handlebars, 
 	// complete - function to count the number of loops through objects to we know when to render the page
 	function getIndustryByID(sqlObj, index) {
-		var query = "SELECT s.SkillName, sk.CategoryName, es.Experience, e.ExpertID FROM ExpertSkills es ";
+		var query = "SELECT s.SkillName as name, es.Experience, e.ExpertID FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
-		query += "INNER JOIN SkillCategory sk ON sk.CategoryID = s.FK_CategoryID ";
-		query += "WHERE sk.CategoryName = 'Industry' AND e.ExpertID = ? ";
+		query += "WHERE s.FK_CategoryID = 2 AND e.ExpertID = ? ";
 		sqlObj.setQuery(query, index);
-		sqlObj.executeQuery('industry', 2);
+		sqlObj.executeQuery('profile_industry', 2);
 	}
 
 
