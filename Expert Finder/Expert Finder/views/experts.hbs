@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/public/style.css" rel="stylesheet">
 <section>
 
     {{#if expert.length}}
@@ -9,7 +11,7 @@
                     <th>Email</th>
                     <th>Github</th>
                     <th>About</th>
-                    <th></th>
+                    <th>Profile Link</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +20,7 @@
                     <td hidden>{{ExpertID}}</td>
                     <td><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
                     <td>{{ProfileEmail}}</td>
-                    <td><a href=GithubLink>{{GithubLink}}</a></td>
+                    <td id="gitLinkRow"><a href="{{GithubLink}}" class="fa fa-github"></a></td>
                     <td>{{About}}</td>
                     <td>
                         <button type="button" onclick="window.location.href='/experts/view/{{ExpertID}}';" class="table-details tooltip">

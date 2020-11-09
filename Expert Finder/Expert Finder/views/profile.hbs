@@ -7,8 +7,10 @@
           <div class="name">
               <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
           </div>
-          <div class="profile_pic">
-              <p1>{Profile Picture}</p1>
+              <p1>
+                  <img src="{{selected_expert.ProfilePicture}}" width="200" height="300">
+              </p1>
+           
               <br>
               <br>
               <p1>About: {{selected_expert.About}}</p1>
@@ -22,7 +24,7 @@
               <a href="{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
               &nbsp
               <a href="{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
-              &nbsp
+             &nbsp
               <a href="{{selected_expert.GithubLink}}" class="fa fa-github"></a>
           </div>
       </nav>
@@ -38,7 +40,7 @@
                       {{#each skills}}
                       <tr>
                           <td>{{SkillName}}</td>
-                          <td>{{Experience}}</td>
+                          <td>{{Experience}} years</td>
                       </tr>
                       {{/each}}
                   </table>
