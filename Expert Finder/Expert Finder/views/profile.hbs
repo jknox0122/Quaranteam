@@ -8,7 +8,11 @@
               <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
           </div>
               <p1>
+                  {{#if selected_expert.ProfilePicture}}
                   <img src="{{selected_expert.ProfilePicture}}" width="200" height="300">
+                  {{else}}
+                  <p>No photo available</p>
+                  {{/if}}
               </p1>
            
               <br>
@@ -31,18 +35,14 @@
       <body>
           <div class="table_container">
               {{#if profile_skill.length}}
-              <div class='skills'>
+              <div>
                   <br>
                   <table class='skills'>
                       <caption class="results-table-header-label">Technical Skills</caption>
-    
+
                       {{#each profile_skill}}
                       <tr>
-<<<<<<< HEAD
-                          <td>{{SkillName}}</td>
-=======
                           <td>{{name}}</td>
->>>>>>> 3f15f3a8b6008af2ad1464349bffdb3125776c25
                           <td>{{Experience}} years</td>
                       </tr>
                       {{/each}}
@@ -50,9 +50,9 @@
               </div>
               {{/if}}
               {{#if profile_industry.length}}
-              <div class='industry'>
+              <div>
                   <br>
-                  <table class='industry'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
                       <tr>
@@ -64,9 +64,9 @@
               </div>
               {{/if}}
               {{#if profile_course.length}}
-              <div class='courses'>
+              <div>
                   <br>
-                  <table class='courses'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
                       <tr>
