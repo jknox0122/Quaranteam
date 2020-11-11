@@ -1,0 +1,21 @@
+.main {
+    height: 100%;
+    font-size: 2rem;
+    display: flex;
+    width: 100%;
+  }
+
+
+  .name_edit{
+      font-size: medium;
+  }
+  .skills_edit{
+      font-size: medium;
+      height: auto;
+  }
+  .bio_edit{
+      font-size:medium;
+  }
+  .skill_tbl, td, th{
+      border: 1px solid black;
+  }

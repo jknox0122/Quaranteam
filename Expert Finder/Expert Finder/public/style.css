@@ -69,6 +69,11 @@ body {
     font-style: oblique; 
 }
 
+#how_to {
+    width: 50%;
+    font-size: 3;
+}
+
 .skills {
     width: 100%;
     border: 2px solid gray;
