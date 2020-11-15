@@ -24,10 +24,10 @@ app.engine('hbs', handlebars({
 app.set('port', port);
 app.set('mysql', mysql);
 
+app.use(express.static(path.join(__dirname, '/public')))
 app.use('/static', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', express.static('public'));
 app.use('/', require('./welcome.js'));
 app.use('/experts', require('./experts.js'));
 app.use('/search', require('./search.js'));

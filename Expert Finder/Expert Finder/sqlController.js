@@ -23,6 +23,10 @@ module.exports.sqlController = class sqlController {
 		this.inserts.push(param);
 	}
 
+	addContext(param, value) {
+		this.context[param] = value; 
+    }
+
 	// Name: executeInsert
 	// Description: General purpose function to execute mysql. This one doesn't need to return any results and just inserts data into the database
 	executeInsert() {
@@ -51,9 +55,7 @@ module.exports.sqlController = class sqlController {
 				currentSQL.context[handlebarsResults] = results;
             }
 			currentSQL.callBack++;
-			console.log("call: " + currentSQL.callBack, " Iter: " + currentSQL.iterations);
 			if (currentSQL.callBack >= currentSQL.iterations) {
-
 				currentSQL.res.render(currentSQL.nextPage, currentSQL.context);
 			}
 		});

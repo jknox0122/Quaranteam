@@ -30,8 +30,6 @@ module.exports = function () {
 		profileBuilder(sqlstuff, req.body.about, "About");
 
 		sql = sqlstuff.sql1 + ")" + sqlstuff.sql2 + ")";
-		console.log(sql);
-		console.log(sqlstuff.inserts)
 
 		// Run the query
 		mysql.pool.query(sql, sqlstuff.inserts, function (error, results, fields) {
@@ -53,7 +51,6 @@ module.exports = function () {
 		if (typeof skill !== 'object') {
 			skill = [skill.name];
 		}
-		console.log(skill);
 		for (let s of skill) {
 			sql = "INSERT INTO ExpertSkillsID (FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)";
 			inserts = [id, s.name, s.experience];
@@ -78,29 +75,32 @@ function getSkill(sqlControl, context, index) {
 	sqlControl.executeQuery(context, 2);
 }
 
-
 	// Get skill info to display on the page
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
 		let sqlControls = new sqlC.sqlController(res, mysql);
 		sqlControls.setUpIteration(4, 'add-expert');
+		sqlControls.addContext("jsscripts", "[skills.js]")
 		getCategories(sqlControls);
 		getSkill(sqlControls, "skill", 1);
 		getSkill(sqlControls, "industry", 2);
 		getSkill(sqlControls, "course", 3);
-
 	});
 
-	// Add an expert and all relevant information
-	router.post('/', function (req, res) {
-		console.log("Posting");
+// Add an expert
+	router.put('/', function (req, res) {
 		var mysql = req.app.get('mysql');
+		insertExpert(req, res, mysql, complete);
+		expertData = req.body.form;
+		skillData = req.body.table;
+		console.log(expertData);
+		console.log(skillData);
 		addExpert(req, res, mysql, complete);
-		function complete(id) {
-			if (req.body.hasOwnProperty('skill')) {
-				insertSkills(id, req, res, mysql);
-			}
-			res.redirect('/experts');
+
+		function complete(expertID) {
+			console.log("success");
+			res.status(200);
+			res.end();
 		}
 	});
 
