@@ -23,6 +23,10 @@ module.exports.sqlController = class sqlController {
 		this.inserts.push(param);
 	}
 
+	addContext(param, value) {
+		this.context[param] = value; 
+    }
+
 	// Name: executeInsert
 	// Description: General purpose function to execute mysql. This one doesn't need to return any results and just inserts data into the database
 	executeInsert() {
@@ -37,6 +41,8 @@ module.exports.sqlController = class sqlController {
 
 	// Name: executeQuery
 	// Description: General purpose function used run sql queries
+	// Parameters:	The handlebarResults is the name of the context obj used in handlebars
+	//				The count is whether it is one item retured or multiple
 	executeQuery(handlebarsResults, count) {
 		var currentSQL = this;
 		this.mysql.pool.query(this.sql, this.inserts, function (error, results, fields) {
@@ -51,9 +57,7 @@ module.exports.sqlController = class sqlController {
 				currentSQL.context[handlebarsResults] = results;
             }
 			currentSQL.callBack++;
-			console.log("call: " + currentSQL.callBack, " Iter: " + currentSQL.iterations);
 			if (currentSQL.callBack >= currentSQL.iterations) {
-
 				currentSQL.res.render(currentSQL.nextPage, currentSQL.context);
 			}
 		});

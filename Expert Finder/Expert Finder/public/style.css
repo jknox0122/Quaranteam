@@ -91,7 +91,17 @@ body {
     text-align: left;
     background-color: #1102af;
     color: white;
+    border-bottom: 2px solid black;
   }
+
+.results-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1102af;
+    color: white;
+    border-bottom: 2px solid black;
+}
 
   #gitLinkRow{
       text-align: center;

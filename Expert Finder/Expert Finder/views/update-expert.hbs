@@ -1,0 +1,142 @@
+
+
+
+
+<link href="/public/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="frame">
+  <main class="main">
+  		<h1>Update Expert Info </h1>
+  		<form class='form' id="update-expert" action="/experts/view" method="post" >
+		    	<label>First Name</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.FirstName}}" name="FirstName" style="width: 500px; height: 25px;">
+              <br>
+
+               	<label>First Name</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.LastName}}" name="LastName" style="width: 500px; height: 25px;">
+              <br>
+
+		      	<label>About</label>
+		      	<input type="text" class="form-control" value= "{{selected_expert.About}}" name="About" style="width: 500px; height: 20px;">
+              <br>
+
+		      	<label>Email</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.ProfileEmail}}" name="ProfileEmail" style="width: 500px; height: 20px;">
+              <br>
+
+		      	<label>Github Handle:</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.GithubLink}}" name="GithubLink" style="width: 500px; height: 20px;">
+              <br>
+
+              	<label>LinkedIN Handle:</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.LinkedInLink}}" name="LinkedInLink" style="width: 500px; height: 20px;">
+              <br>
+
+              	<label>Twitter Handle:</label>
+		      	<input type="text" class="form-control" value="{{selected_expert.TwitterLink}}" name="TwitterLink" style="width: 500px; height: 20px;">
+              <br>
+
+
+
+
+		    
+	</form>
+
+	<button class="btn btn-secondary" onclick="updateExpert({{selected_expert.ExpertID}})">Update</button>
+
+	<!-- update script reference -->
+<script src="/updateExpert.js"></script>
+
+
+
+<!-- 
+     <body>
+      	<h2>Update Expert Info:</h2>
+          <div class="table_container">
+              {{#if profile_skill.length}}
+                  <br>                
+    
+                      {{#each profile_skill}}
+                
+
+                          <label>Skill:</label>
+		      			  <input type="text" class="form-control" value="{{name}}" style="width: 100px; height: 20px; margin-right: 20px" >
+
+		      			  <label>Experience:</label>
+		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
+                   			<br>
+                      {{/each}}
+              {{/if}}
+              {{#if profile_industry.length}}
+              <div class='industry'>
+                  <br>
+                  <table class='industry'>
+                      <caption class="results-table-header-label">Industries</caption>
+                      {{#each profile_industry}}
+                      <tr>
+                          <td>{{name}}</td>
+                          <td>{{Experience}} years</td>
+                      </tr>
+                      {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+              {{#if profile_course.length}}
+              <div class='courses'>
+                  <br>
+                  <table class='courses'>
+                      <caption class="results-table-header-label">Courses</caption>
+                      {{#each profile_course}}
+                      <tr>
+                          <td>{{name}}</td>
+                          <td></td>
+                      </tr>
+                      {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+          </div>
+      </body> -->
+
+
+<!--      <body>
+      	<h2>Update Expert Skills:</h2>
+              {{#if profile_skill.length}}
+                  <br>                
+    
+                      {{#each profile_skill}}
+                
+
+                          <label>Skill:</label>
+		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+
+		      			  <label>Experience:</label>
+		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
+                   			<br>
+                      {{/each}}
+              {{/if}}
+              {{#if profile_industry.length}}
+                  <br>
+                      {{#each profile_industry}}
+                            <label>Industry:</label>
+		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+
+		      			  <label>Experience:</label>
+		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
+                   			<br>
+                      {{/each}}
+              {{/if}}
+              {{#if profile_course.length}}
+                  <br>
+                      {{#each profile_course}}
+                          <label>Course:</label>
+		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+
+		      			  
+                   			<br>
+                      {{/each}}
+              {{/if}}
+      </body>
+
+</main>
+ -->

@@ -34,8 +34,16 @@
     <Content Include="experts.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\addExpert.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\profile.css" />
     <Content Include="public\style.css" />
+    <Content Include="skills.js">
+      <SubType>Code</SubType>
+      <TestFramework>
+      </TestFramework>
+    </Content>
     <Content Include="sqlController.js">
       <SubType>Code</SubType>
     </Content>
@@ -54,6 +62,8 @@
     <Content Include="views\profile.hbs" />
     <Content Include="views\results.hbs" />
     <Content Include="views\search.hbs" />
+    <Content Include="views\update-expert-skills.hbs" />
+    <Content Include="views\update-expert.hbs" />
     <Content Include="views\welcome.hbs" />
     <Content Include="welcome.js">
       <SubType>Code</SubType>

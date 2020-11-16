@@ -7,14 +7,8 @@
           <div class="name">
               <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
           </div>
-              <p1>
-                  {{#if selected_expert.ProfilePicture}}
-                  <img src="{{selected_expert.ProfilePicture}}" width="200" height="300">
-                  {{else}}
-                  <p>No photo available</p>
-                  {{/if}}
-              </p1>
-           
+          <div class="profile_pic">
+              <p1>{Profile Picture}</p1>
               <br>
               <br>
               <p1>About: {{selected_expert.About}}</p1>
@@ -27,51 +21,58 @@
               <br>
               <a href="http://www.twitter.com/{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
               &nbsp
-              <a href="{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
-             &nbsp
-              <a href="{{selected_expert.GithubLink}}" class="fa fa-github"></a>
+              <a href="http://www.linkedin.com/in/{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
+              &nbsp
+              <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github"></a>
+              &nbsp
+              <a class="btn btn-primary btn-sm" href="/experts/update/{{selected_expert.ExpertID}}" role="button">Update</a>
           </div>
       </nav>
       <body>
           <div class="table_container">
               {{#if profile_skill.length}}
-              <div>
+              <div class='skills'>
                   <br>
                   <table class='skills'>
                       <caption class="results-table-header-label">Technical Skills</caption>
-
+    
                       {{#each profile_skill}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
                       </tr>
                       {{/each}}
                   </table>
               </div>
               {{/if}}
               {{#if profile_industry.length}}
-              <div>
+              <div class='industry'>
                   <br>
-                  <table class='skills'>
+                  <table class='industry'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
+
                       </tr>
                       {{/each}}
                   </table>
               </div>
               {{/if}}
               {{#if profile_course.length}}
-              <div>
+              <div class='courses'>
                   <br>
-                  <table class='skills'>
+                  <table class='courses'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
                       <tr>
                           <td>{{name}}</td>
                           <td></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
+
                       </tr>
                       {{/each}}
                   </table>
