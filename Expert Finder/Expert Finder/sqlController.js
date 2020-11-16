@@ -41,6 +41,8 @@ module.exports.sqlController = class sqlController {
 
 	// Name: executeQuery
 	// Description: General purpose function used run sql queries
+	// Parameters:	The handlebarResults is the name of the context obj used in handlebars
+	//				The count is whether it is one item retured or multiple
 	executeQuery(handlebarsResults, count) {
 		var currentSQL = this;
 		this.mysql.pool.query(this.sql, this.inserts, function (error, results, fields) {

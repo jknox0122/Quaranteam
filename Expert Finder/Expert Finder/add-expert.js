@@ -2,6 +2,7 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
+	let skills = require('./skills.js');
 
 
 	function profileBuilder(sql, prof, txt) {
@@ -59,32 +60,14 @@ module.exports = function () {
 	}
 
 
-// Name: getCategories
-// Description: Use this function to display the various search categories
-function getCategories(sqlControl) {
-	query = "SELECT CategoryID AS id, CategoryName AS name FROM SkillCategory";
-	sqlControl.setQuery(query, [0]);
-	sqlControl.executeQuery('category', 2);
-}
-
-// Name: getSkills
-// Description: Use this function to display the available skills
-function getSkill(sqlControl, context, index) {
-	query = "SELECT SkillID AS id, SkillName AS name FROM Skills WHERE FK_CategoryID = ?";
-	sqlControl.setQuery(query, index);
-	sqlControl.executeQuery(context, 2);
-}
-
 	// Get skill info to display on the page
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
-		let sqlControls = new sqlC.sqlController(res, mysql);
-		sqlControls.setUpIteration(4, 'add-expert');
-		sqlControls.addContext("jsscripts", "[skills.js]")
-		getCategories(sqlControls);
-		getSkill(sqlControls, "skill", 1);
-		getSkill(sqlControls, "industry", 2);
-		getSkill(sqlControls, "course", 3);
+		let sqlObj = new sqlC.sqlController(res, mysql);
+		sqlObj.setUpIteration(4, 'add-expert');
+		sqlObj.addContext("jsscripts", "[skills.js]")
+		let skillObj = new skills.Skills(-1);
+		skillObj.setUpSkills(sqlObj);
 	});
 
 // Add an expert
@@ -93,8 +76,6 @@ function getSkill(sqlControl, context, index) {
 		insertExpert(req, res, mysql, complete);
 		expertData = req.body.form;
 		skillData = req.body.table;
-		console.log(expertData);
-		console.log(skillData);
 		addExpert(req, res, mysql, complete);
 
 		function complete(expertID) {

@@ -38,10 +38,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\profile.css" />
-    <Content Include="public\skills.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="public\style.css" />
+    <Content Include="skills.js">
+      <SubType>Code</SubType>
+      <TestFramework>
+      </TestFramework>
+    </Content>
     <Content Include="sqlController.js">
       <SubType>Code</SubType>
     </Content>
