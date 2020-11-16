@@ -23,7 +23,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black */
+    background-color: #D73F09; /* OSU Orange */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
 }
@@ -33,7 +33,7 @@
         padding: 6px 8px 6px 16px;
         text-decoration: none;
         font-size: 25px;
-        color: #818181;
+        color: #111111;
         display: block;
     }
 
@@ -44,7 +44,22 @@
 
 
 .title_header{
-    color: white
+    color: white;
+    margin-left: 5px;
+}
+
+/* Header stuff */
+
+.header_label {
+    margin-left: 5%;
+}
+
+.header_select {
+    margin-left: 1%;
+}
+
+#header_search_button {
+    margin-left: 5%;
 }
 
 body {
@@ -98,7 +113,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #1102af;
+    background-color: #D73F09; /* OSU Orange */
     color: white;
     border-bottom: 2px solid black;
 }

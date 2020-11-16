@@ -8,43 +8,43 @@
 
 SEARCH
 
-<label for="category">Category</label>
-<select name="category" id="search_category" onchange="showSkills('search')">
+<label class="header_label" for="category">Category</label>
+<select class="header_select" name="category" id="search_category" onchange="showSkills('search')">
     {{#each category}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<label for="skills">Skils</label>
-<select name="skills" id="search_skills">
+<label class="header_label" for="skills">Skills</label>
+<select class="header_select" name="skills" id="search_skills">
     {{#each skill}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<label hidden for="industry">Industry</label>
-<select hidden name="industry" id="search_industry">
+<label hidden class="header_label" for="industry">Industry</label>
+<select hidden class="header_select" name="industry" id="search_industry">
     {{#each industry}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<label hidden for="course">Course</label>
-<select hidden name="course" id="search_course">
+<label hidden class="header_label" for="course">Course</label>
+<select hidden class="header_select" name="course" id="search_course">
     {{#each course}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<label for="experience">Experience</label>
-<select name="experience" id="experience">
+<label class="header_label" for="experience">Experience</label>
+<select class="header_select" name="experience" id="experience">
     {{#each experience}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
 
-<button type="button" onclick="searchSkills();" class="table-details tooltip">
+<button id="header_search_button" type="button" onclick="searchSkills();" class="table-details tooltip">
     <span class="tooltip-text">Search</span>
 </button>
 <br />
