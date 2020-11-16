@@ -6,28 +6,39 @@
     <section id="add"><a href="/add-expert">Add Expert</a></section>
 </div>
 
-Search
+SEARCH
 
+<label for="category">Category</label>
 <select name="category" id="search_category" onchange="showSkills('search')">
     {{#each category}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
+<label for="skills">Skils</label>
 <select name="skills" id="search_skills">
     {{#each skill}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
+<label hidden for="industry">Industry</label>
 <select hidden name="industry" id="search_industry">
     {{#each industry}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
+<label hidden for="course">Course</label>
 <select hidden name="course" id="search_course">
     {{#each course}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
+
+<label for="experience">Experience</label>
+<select name="experience" id="experience">
+    {{#each experience}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
