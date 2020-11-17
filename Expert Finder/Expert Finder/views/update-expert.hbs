@@ -1,142 +1,129 @@
-
-
-
-
 <link href="/public/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="frame">
-  <main class="main">
-  		<h1>Update Expert Info </h1>
-  		<form class='form' id="update-expert" action="/experts/view" method="post" >
-		    	<label>First Name</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.FirstName}}" name="FirstName" style="width: 500px; height: 25px;">
-              <br>
+        <div class="name_edit" style="display: inline-block;">
+            <p1><u><b>Profile Details</b></u></p1>
+            <br>
+            <br>
+            <form class='form' id="update-expert" action="/experts/view" method="post" >
+                <label for="f_name">First Name:</label>
+                <input type="text" id="f_name" value={selected_expert.FirstName}>
+            &nbsp
+                <label for="l_name">Last Name:&nbsp;</label>
+                <input type="text" id="l_name" value={selected_expert.LastName}></span>
+            &nbsp
+            <label for="email">Email:</label>
+            <input type="text" id="email" value={selected_expert.ProfileEmail}>
+            <br>
+            <br>
+            <label for="password">Password: </label>
+            <input type="password" id="password">
+            &nbsp
+            <label for="password">Repeat Password:</label>
+            <input type="text" id="password">
+            </form>
+        </div>
+        <br>
+        <main class="main">
+        <div style="display: flex; width: 50%;">
+            <div class="bio_edit" style="width: 30%;"> 
 
-               	<label>First Name</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.LastName}}" name="LastName" style="width: 500px; height: 25px;">
-              <br>
+                <p1><u><b>Help People Find You</b></u></p1>
+                <br>
+                <br>
+                <form class='form' id="update-expert" action="/experts/view" method="post" >
+                    {profile picture}
+                    <br>
+                    <br>
+                    <input type="file" id="myFile" name="filename">
+                </form>
+            </div>
+        <div class="bio_container" style="width: auto;">
+        <form class='form' id="update-expert" action="/experts/view" method="post" >
+        <label for="bio_entry">Enter your biography below</label>
+        <textarea id="bio_entry" name="bio" rows="4" cols="50"> 
+        {bio}
+        </textarea>
+        </form>
+        </div>
+        </div>
+        <div class="skills_edit">
+            <p1><u><b>Add Skills</b></u></p1>
+            <br>
+            <br>
+        <form class='form' id="update-expert" action="/experts/view" method="post" >
+        <label for="cars">Language:</label>
+        <select id="skills" name="skills">
+            <option value="python">Python</option>
+            <option value="c+">C+</option>
+            <option value="java">Java</option>
+            <option value="js">JavaScript</option>
+        </select>
+        &nbsp
+        <label for="experience">Experience</label>
+        <select id="cars" name="cars">
+            <option value="node">NodeJs</option>
+            <option value="db">Database</option>
+            <option value="fe">Front End</option>
+            <option value="be">Back End</option>
+        </select>
+        <input type="submit" value="Submit">
+        </form>
+        <br>
+        <table class="skill_tbl">
+        <form class='form' id="update-expert" action="/experts/view" method="post" >
+            <caption><u><b>Added Skills</b></u></caption>
+            <th>Skill</th>
+            <th>Experience</th>
+            <th></th>
+            {#each skill}
+          <tr>
+            <td>{skill}</td>
+            <td>{experience}</td>
+            <td><input action="sql_delete" type="submit" value="Remove"></td>
+          </tr>
+          {/each}
+        </form>
+        </table>
+        </div>
+        </main>
+        <div style="display: flex;">
+            <form class='form' id="update-expert" action="/experts/view" method="post" >
+                <label for="job_title"></label>Job Title:</label>
+                <input type="text" id="job_title">
+                &nbsp
+                <label for="employer"></label>Employer:</label>
+                <input type="text" id="employer">
+                <br>
+                <br>
+                <label for="github"></label>Github:</label>
+                <input type="text" id="f_name">
+                &nbsp
+                <label for="personal_site"></label>Personal Website:</label>
+                <input type="text" id="personal_site">
+                <br>
+                <br>
+                <label for="linkedin"></label>Linkedin:</label>
+                <input type="text" id="linkedin">
+                &nbsp
+                <label for="facebook"></label>Facebook:</label>
+                <input type="text" id="facebook">
+                <button style="position: absolute; right: 5%;" class="btn btn-secondary" onclick="updateExpert({{selected_expert.ExpertID}})" style="">
+                Update Profile
+                </button>
+            </form>
+                <!--<input type="submit" value="Submit Page" style="position: absolute; right: 5%;">-->
+            </form>
+        </div>
+    <style>
 
-		      	<label>About</label>
-		      	<input type="text" class="form-control" value= "{{selected_expert.About}}" name="About" style="width: 500px; height: 20px;">
-              <br>
-
-		      	<label>Email</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.ProfileEmail}}" name="ProfileEmail" style="width: 500px; height: 20px;">
-              <br>
-
-		      	<label>Github Handle:</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.GithubLink}}" name="GithubLink" style="width: 500px; height: 20px;">
-              <br>
-
-              	<label>LinkedIN Handle:</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.LinkedInLink}}" name="LinkedInLink" style="width: 500px; height: 20px;">
-              <br>
-
-              	<label>Twitter Handle:</label>
-		      	<input type="text" class="form-control" value="{{selected_expert.TwitterLink}}" name="TwitterLink" style="width: 500px; height: 20px;">
-              <br>
-
-
-
-
-		    
-	</form>
-
-	<button class="btn btn-secondary" onclick="updateExpert({{selected_expert.ExpertID}})">Update</button>
-
-	<!-- update script reference -->
-<script src="/updateExpert.js"></script>
-
-
-
-<!-- 
-     <body>
-      	<h2>Update Expert Info:</h2>
-          <div class="table_container">
-              {{#if profile_skill.length}}
-                  <br>                
+    .main {height: 100%; font-size: 2rem; display: flex; width: 100%;}
     
-                      {{#each profile_skill}}
-                
+    .name_edit{font-size: medium;}
+   
+    .skills_edit{ font-size: medium; height: auto; }
+  
+    .bio_edit{font-size:medium;}
+   
+    .skill_tbl, td, th{border: 1px solid black; }
 
-                          <label>Skill:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 100px; height: 20px; margin-right: 20px" >
-
-		      			  <label>Experience:</label>
-		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                   			<br>
-                      {{/each}}
-              {{/if}}
-              {{#if profile_industry.length}}
-              <div class='industry'>
-                  <br>
-                  <table class='industry'>
-                      <caption class="results-table-header-label">Industries</caption>
-                      {{#each profile_industry}}
-                      <tr>
-                          <td>{{name}}</td>
-                          <td>{{Experience}} years</td>
-                      </tr>
-                      {{/each}}
-                  </table>
-              </div>
-              {{/if}}
-              {{#if profile_course.length}}
-              <div class='courses'>
-                  <br>
-                  <table class='courses'>
-                      <caption class="results-table-header-label">Courses</caption>
-                      {{#each profile_course}}
-                      <tr>
-                          <td>{{name}}</td>
-                          <td></td>
-                      </tr>
-                      {{/each}}
-                  </table>
-              </div>
-              {{/if}}
-          </div>
-      </body> -->
-
-
-<!--      <body>
-      	<h2>Update Expert Skills:</h2>
-              {{#if profile_skill.length}}
-                  <br>                
-    
-                      {{#each profile_skill}}
-                
-
-                          <label>Skill:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
-
-		      			  <label>Experience:</label>
-		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                   			<br>
-                      {{/each}}
-              {{/if}}
-              {{#if profile_industry.length}}
-                  <br>
-                      {{#each profile_industry}}
-                            <label>Industry:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
-
-		      			  <label>Experience:</label>
-		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                   			<br>
-                      {{/each}}
-              {{/if}}
-              {{#if profile_course.length}}
-                  <br>
-                      {{#each profile_course}}
-                          <label>Course:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
-
-		      			  
-                   			<br>
-                      {{/each}}
-              {{/if}}
-      </body>
-
-</main>
- -->
+   </style>
