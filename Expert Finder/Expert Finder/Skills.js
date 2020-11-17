@@ -12,16 +12,9 @@ module.exports.Skills = class Skills {
 	// You set the params array from the request body
 	addSkill(sqlObj, params) {
 		for (let index of params) {
-			var exp = index.experience;
-			console.log(exp);
-			if (exp > 0) {
-				var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)";
-				var inserts = [this.expertID, index.skill, exp];
-			}
-			else {
-				var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID) VALUES (?, ?)";
-				var inserts = [this.expertID, index.skill];
-			}
+			console.log("Exp: " + index.experience);
+			var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)";
+			var inserts = [this.expertID, index.skill, index.experience];
 			sqlObj.setQuery(query, inserts);
 			sqlObj.insertData(newfunc);
 		}

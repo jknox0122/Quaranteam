@@ -3,12 +3,10 @@ function addExpert() {
     var expert = {};
     let table = document.getElementById("skills_table");
     for (var i = 1, row; row = table.rows[i]; i++) {
-        var exp = Number(row.cells[3].textContent);
-        
         skillset.push({
             category: row.cells[0].textContent,
             skill: row.cells[1].textContent,
-            experience: exp
+            experience: row.cells[3].textContent
         });
     }
 
