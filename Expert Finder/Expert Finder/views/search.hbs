@@ -1,31 +1,87 @@
-<h1>Search for an Expert</h1>
+<main>
+    <h1>Search for an Expert</h1>
 
-<label for="category">Type of search:</label>
-<select name="category" id="search_category" onchange="showSkills('search')">
-    {{#each category}}
-    <option value='{{id}}'>{{name}}</option>
-    {{/each}}
-</select>
+    <h2>Type of search:</h2>
 
-<select name="skills" id="search_skills">
-    {{#each skill}}
-    <option value='{{id}}'>{{name}}</option>
-    {{/each}}
-</select>
+    <div id="search_div">
+        <label for="category">CATEGORY</label>
+        <select name="category" id="category" onchange="showSearch()">
+            {{#each category}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select><br>
 
-<select hidden name="industry" id="search_industry">
-    {{#each industry}}
-    <option value='{{id}}'>{{name}}</option>
-    {{/each}}
-</select>
+        <label for="skills">SKILLS</label>
+        <select name="skills" id="skills">
+            {{#each skill}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select>
 
-<select hidden name="course" id="search_course">
-    {{#each course}}
-    <option value='{{id}}'>{{name}}</option>
-    {{/each}}
-</select>
+        <label hidden for="industry">INDUSTRY</label>
+        <select hidden name="industry" id="industry">
+            {{#each industry}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select>
+
+        <label hidden for="course">COURSE</label>
+        <select hidden name="course" id="course">
+            {{#each course}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select><br>
+
+        <label for="experience">EXPERIENCE</label>
+        <select name="experience" id="experience">
+            {{#each experience}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <br>
 
 
-<button type="button" onclick="searchSkills('search');" class="table-details tooltip">
-    <span class="tooltip-text">Search</span>
-</button>
+
+    <button type="button" onclick="searchSkills();" class="table-details tooltip">
+        <span class="tooltip-text">Search</span>
+    </button>
+
+    <script>
+
+        function showSearch() {
+            var cat = document.getElementById("category").value;
+            if (cat == 1) {
+                document.getElementById("skills").hidden = false;
+                document.getElementById("industry").hidden = true;
+                document.getElementById("course").hidden = true;
+            }
+            else if (cat == 2) {
+                document.getElementById("skills").hidden = true;
+                document.getElementById("industry").hidden = false;
+                document.getElementById("course").hidden = true;
+            }
+            else if (cat == 3) {
+                document.getElementById("skills").hidden = true;
+                document.getElementById("industry").hidden = true;
+                document.getElementById("course").hidden = false;
+            }
+        
+        }
+
+        function searchSkills() {
+            var cat = document.getElementById("category").value;
+            if (cat == 1) {
+                var skill = document.getElementById("skills").value;
+            }
+            else if (cat == 2) {
+                var skill = document.getElementById("industry").value;
+            }
+            else if (cat == 3) {
+                var skill = document.getElementById("course").value;
+            }
+            var query = ("/search/results/" + encodeURIComponent(skill));
+            window.location = query;
+        }
+    </script>
+</main>
