@@ -1,34 +1,23 @@
+// Displays a list of experts or just a single profile
+// You can click on each expert to get more info about them
 module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
-	let sqlC = require('./sqlController.js');
-	let skills = require('./skills.js');
-
-	// Name: getExperts
-	// Description: Get profile information
-	function getExperts(sqlObj) {
-		var query = "SELECT * FROM Experts";
-		sqlObj.setQuery(query, [0]);
-		sqlObj.executeQuery('expert', 2);
-	}
-
-	// Name: getExpertsbyID
-	// Description: Get Experts by ID number - used to view profile information
-	function getExpertByID(sqlObj, index) {
-		var query = "SELECT * FROM Experts WHERE ExpertID = ?";
-		sqlObj.setQuery(query, index);
-		sqlObj.executeQuery('selected_expert', 1);
-	}
-
+	let sqlC = require('./sqlController.js');	// Page render and database interface
+	let skills = require('./skills.js');		// Skills class obj
+	let expert = require('./expert.js');		// Expert class obj
 
 	// Display all experts
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
-		let sqlObj = new sqlC.sqlController(res, mysql);
-		let skillObj = new skills.Skills(-1);
+		let sqlObj = new sqlC.sqlController(res, mysql);	// Set up page rendering
 		sqlObj.setUpIteration(5, 'experts');
+
+		let skillObj = new skills.Skills(-1);		// Populate the skills
 		skillObj.setUpSkills(sqlObj, "");
-		getExperts(sqlObj);
+
+		let expObj = new expert.Expert(-1);			// Get the expert profile
+		expObj.getExperts(sqlObj);
 	});
 
 
@@ -72,26 +61,21 @@ module.exports = function () {
         });
     });
 
-	// Display information about a specifically selected author
+	// Display information about a specifically selected expert
 	router.get('/view/:id', function (req, res) {
-		console.log("EXPERT VIEW ID");
-
 		var mysql = req.app.get('mysql');
 		var index = [req.params.id];
-		let sqlObj = new sqlC.sqlController(res, mysql);
-		let skillObj1 = new skills.Skills(-1);
+		let sqlObj = new sqlC.sqlController(res, mysql);	// Set up the rendering class
+		sqlObj.setUpIteration(9, 'profile');
+
+		let skillObj1 = new skills.Skills(-1);				// Set up the profile's skills
 		let skillObj2 = new skills.Skills(index);
-		sqlObj.setUpIteration(8, 'profile');
 		skillObj1.setUpSkills(sqlObj, "");
-		skillObj2.skillGrabber(sqlObj, 1, 'profile_skill');
-		skillObj2.skillGrabber(sqlObj, 2, 'profile_industry');
-		skillObj2.skillGrabber(sqlObj, 3, 'profile_course');
-		getExpertByID(sqlObj, index);
+		skillObj2.setUpSkills(sqlObj, "profile_");
+
+		let expObj = new expert.Expert(index);				// Set up the expert profile
+		expObj.getExperts(sqlObj);
 	});
-
-
-
-
 
 	return router;
 }();

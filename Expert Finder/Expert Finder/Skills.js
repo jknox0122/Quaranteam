@@ -8,6 +8,28 @@ module.exports.Skills = class Skills {
 		this.setCategory(1, 'skill');	// Set the type of skill initially to skills
 	}
 
+	// Add a skill to an experts portfolio. The skill is assigned to the expert with the corresponding expert id. 
+	// You set the params array from the request body
+	addSkill(sqlObj, params) {
+		for (let index of params) {
+			var exp = index.experience;
+			console.log(exp);
+			if (exp > 0) {
+				var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)";
+				var inserts = [this.expertID, index.skill, exp];
+			}
+			else {
+				var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID) VALUES (?, ?)";
+				var inserts = [this.expertID, index.skill];
+			}
+			sqlObj.setQuery(query, inserts);
+			sqlObj.insertData(newfunc);
+		}
+		function newfunc(id) {
+			return;
+		}
+    }
+
 	// Returns the query that will be used to either get all skills in a category or all of the skills associated with a specific expert
 	getSkills() {
 		var query = "";
@@ -49,13 +71,13 @@ module.exports.Skills = class Skills {
 	}
 
 	// Little helper function that makes it easy to setup the search bar
-	setUpSkills(sqlObj) {
+	setUpSkills(sqlObj, prefix = "") {
 		sqlObj.setQuery(this.getCategories(), [0]);
 		sqlObj.executeQuery('category', 2);
 
-		this.skillGrabber(sqlObj, 1, 'skill');
-		this.skillGrabber(sqlObj, 2, 'industry');
-		this.skillGrabber(sqlObj, 3, 'course');
+		this.skillGrabber(sqlObj, 1, prefix + 'skill');
+		this.skillGrabber(sqlObj, 2, prefix + 'industry');
+		this.skillGrabber(sqlObj, 3, prefix + 'course');
 	}
 
 	// Grab a set of skills and provide the context back for handlebars

@@ -31,7 +31,7 @@
       <body>
           <div class="table_container">
               {{#if profile_skill.length}}
-              <div class='skills'>
+              <div>
                   <br>
                   <table class='skills'>
                       <caption class="results-table-header-label">Technical Skills</caption>
@@ -47,9 +47,9 @@
               </div>
               {{/if}}
               {{#if profile_industry.length}}
-              <div class='industry'>
+              <div >
                   <br>
-                  <table class='industry'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
                       <tr>
@@ -63,9 +63,9 @@
               </div>
               {{/if}}
               {{#if profile_course.length}}
-              <div class='courses'>
+              <div>
                   <br>
-                  <table class='courses'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
                       <tr>

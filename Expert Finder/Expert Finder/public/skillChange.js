@@ -18,16 +18,16 @@ function showSkills(page) {
     }
 }
 
-function searchSkills() {
-    var cat = document.getElementById("search_category").value;
+function searchSkills(page) {
+    var cat = document.getElementById(page + "_category").value;
     if (cat == 1) {
-        var skill = document.getElementById("search_skills").value;
+        var skill = document.getElementById(page +"_skills").value;
     }
     else if (cat == 2) {
-        var skill = document.getElementById("search_industry").value;
+        var skill = document.getElementById(page +"_industry").value;
     }
     else if (cat == 3) {
-        var skill = document.getElementById("search_course").value;
+        var skill = document.getElementById(page + "_course").value;
     }
     var query = ("/search/results/" + encodeURIComponent(skill));
     window.location = query;
