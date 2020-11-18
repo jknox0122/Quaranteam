@@ -12,7 +12,6 @@ module.exports.Skills = class Skills {
 	// You set the params array from the request body
 	addSkill(sqlObj, params) {
 		for (let index of params) {
-			console.log("Exp: " + index.experience);
 			var query = "INSERT INTO ExpertSkills (FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)";
 			var inserts = [this.expertID, index.skill, index.experience];
 			sqlObj.setQuery(query, inserts);
@@ -64,19 +63,30 @@ module.exports.Skills = class Skills {
 	}
 
 	// Little helper function that makes it easy to setup the search bar
-	setUpSkills(sqlObj, prefix = "") {
+	setUpSkills(rendObj, sqlObj, prefix = "") {
 		sqlObj.setQuery(this.getCategories(), [0]);
-		sqlObj.executeQuery('category', 2);
-
-		this.skillGrabber(sqlObj, 1, prefix + 'skill');
-		this.skillGrabber(sqlObj, 2, prefix + 'industry');
-		this.skillGrabber(sqlObj, 3, prefix + 'course');
+		sqlObj.executeQuery('category', rendObj, true);
+			
+		this.skillGrabber(rendObj, sqlObj, 1, prefix + 'skill');
+		this.skillGrabber(rendObj, sqlObj, 2, prefix + 'industry');
+		this.skillGrabber(rendObj, sqlObj, 3, prefix + 'course');
 	}
 
 	// Grab a set of skills and provide the context back for handlebars
-	skillGrabber(sqlObj, index, profile) {
+	skillGrabber(rendObj, sqlObj, index, profile) {
 		this.setCategory(index, profile);
 		sqlObj.setQuery(this.query, this.expertID);
-		sqlObj.executeQuery(profile, 2);
+		sqlObj.executeQuery(profile, rendObj, true);
 	}
+
+	// Searches for an expert with a set skill set
+	searchSkill(sqlControl, index) {
+		var query = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
+		query += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
+		query += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
+		query += "WHERE s.SkillID = ? ";
+		query += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
+		sqlControl.setQuery(query, index);
+}
+
 };

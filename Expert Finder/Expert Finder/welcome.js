@@ -5,14 +5,15 @@ module.exports = function () {
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
 	let skills = require('./skills.js');
+	let rend = require('./renderer.js');
 
 	// Displays the home page
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
-		let sqlObj = new sqlC.sqlController(res, mysql);
-		sqlObj.setUpIteration(4, 'welcome');	// 4 iterations - categories + 3 types of skills
+		let sqlObj = new sqlC.sqlController(mysql);
+		let rendObj = new rend.Renderer(res, 4, 'welcome');
 		let skillObj = new skills.Skills(-1);
-		skillObj.setUpSkills(sqlObj);
+		skillObj.setUpSkills(rendObj, sqlObj);
 	});
 
 	return router;

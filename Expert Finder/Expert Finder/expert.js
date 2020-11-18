@@ -3,21 +3,21 @@
 
 module.exports.Expert = class Expert {
 	constructor(expertID) {
-		this.expertID = expertID
-		this.sql_construct = {}
+		this.expertID = expertID;
+		this.sql_construct = {};
 	}
 
-	getExperts(sqlObj) {
+	getExperts(rendObj, sqlObj) {
 		var query = "SELECT * FROM Experts";
-		var index = 2;
 		var profile = 'expert';
+		var	multiple = true;
 		if (this.expertID >= 0) {
 			query += " WHERE ExpertID = ?";
-			index = 1;
 			profile = 'selected_expert';
+			multiple = false;
 		}
 		sqlObj.setQuery(query, [this.expertID]);
-		sqlObj.executeQuery(profile, index);
+		sqlObj.executeQuery(profile, rendObj, multiple);
 	}
 
 	// Builds a profile for inserting new experts
@@ -41,8 +41,8 @@ module.exports.Expert = class Expert {
 		this.profileBuilder(params.linkedin, "LinkedInLink");
 		this.profileBuilder(params.git, "GithubLink");
 		this.profileBuilder(params.about, "About");
-		this.sql_construct.sql1 += ")"
-		this.sql_construct.sql2 += ")"
+		this.sql_construct.sql1 += ")";
+		this.sql_construct.sql2 += ")";
 		sql = this.sql_construct.sql1 + this.sql_construct.sql2;
 		return sql;
 	}

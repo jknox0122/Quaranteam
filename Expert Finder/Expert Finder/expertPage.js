@@ -6,18 +6,19 @@ module.exports = function () {
 	let sqlC = require('./sqlController.js');	// Page render and database interface
 	let skills = require('./skills.js');		// Skills class obj
 	let expert = require('./expert.js');		// Expert class obj
+	let rend = require('./renderer.js');
 
 	// Display all experts
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
-		let sqlObj = new sqlC.sqlController(res, mysql);	// Set up page rendering
-		sqlObj.setUpIteration(5, 'experts');
+		let sqlObj = new sqlC.sqlController( mysql);		// Set up SQL object
+		let rendObj = new rend.Renderer(res, 5, 'experts'); // Display controller
 
-		let skillObj = new skills.Skills(-1);		// Populate the skills
-		skillObj.setUpSkills(sqlObj, "");
+		let skillObj = new skills.Skills(-1);				// Populate the skills
+		skillObj.setUpSkills(rendObj, sqlObj, "");
 
-		let expObj = new expert.Expert(-1);			// Get the expert profile
-		expObj.getExperts(sqlObj);
+		let expObj = new expert.Expert(-1);					// Get the expert profile
+		expObj.getExperts(rendObj, sqlObj);
 	});
 
 
@@ -26,18 +27,16 @@ module.exports = function () {
 	console.log("Attempting to update");
 		var mysql = req.app.get('mysql');
 		var index = [req.params.id];
-		let sqlControls = new sqlC.sqlController(res, mysql);
-		sqlControls.setUpIteration(1, 'update-expert');
+		let sqlObj = new sqlC.sqlController(mysql);
+		let rendObj = new rend.Renderer(res, 9, 'update-expert'); // Display controller
 
-		// getCategories(sqlControls);
-		// getSkill(sqlControls, 'skill', 1);
-		// getSkill(sqlControls, 'industry', 2)
-		// getSkill(sqlControls, 'course', 3)
+		let skillObj1 = new skills.Skills(-1);				// Set up the profile's skills
+		let skillObj2 = new skills.Skills(index);
+		skillObj1.setUpSkills(rendObj, sqlObj, "");
+		skillObj2.setUpSkills(rendObj, sqlObj, "profile_");
 
-		getExpertByID(sqlControls, index);
-		// getSkillsByID(sqlControls,index);
-		// getCoursesByID(sqlControls, index);
-		// getIndustryByID(sqlControls, index);
+		let expObj = new expert.Expert(index);				// Set up the expert profile
+		expObj.getExperts(rendObj, sqlObj);
 
 	});
 
@@ -65,16 +64,16 @@ module.exports = function () {
 	router.get('/view/:id', function (req, res) {
 		var mysql = req.app.get('mysql');
 		var index = [req.params.id];
-		let sqlObj = new sqlC.sqlController(res, mysql);	// Set up the rendering class
-		sqlObj.setUpIteration(9, 'profile');
+		let sqlObj = new sqlC.sqlController(mysql);
+		let rendObj = new rend.Renderer(res, 9, 'profile'); // Display controller
 
 		let skillObj1 = new skills.Skills(-1);				// Set up the profile's skills
 		let skillObj2 = new skills.Skills(index);
-		skillObj1.setUpSkills(sqlObj, "");
-		skillObj2.setUpSkills(sqlObj, "profile_");
+		skillObj1.setUpSkills(rendObj, sqlObj, "");
+		skillObj2.setUpSkills(rendObj, sqlObj, "profile_");
 
 		let expObj = new expert.Expert(index);				// Set up the expert profile
-		expObj.getExperts(sqlObj);
+		expObj.getExperts(rendObj, sqlObj);
 	});
 
 	return router;

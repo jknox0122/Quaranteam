@@ -42,6 +42,9 @@
     <Content Include="public\profile.css" />
     <Content Include="public\skillChange.js" />
     <Content Include="public\style.css" />
+    <Content Include="renderer.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="skills.js">
       <SubType>Code</SubType>
       <TestFramework>
