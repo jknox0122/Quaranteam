@@ -31,11 +31,25 @@
     <Content Include="add-expert.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="experts.js">
+    <Content Include="expert.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="expertPage.js" />
+    <Content Include="libman.json" />
+    <Content Include="public\addExpert.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\profile.css" />
+    <Content Include="public\skillChange.js" />
     <Content Include="public\style.css" />
+    <Content Include="renderer.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="skills.js">
+      <SubType>Code</SubType>
+      <TestFramework>
+      </TestFramework>
+    </Content>
     <Content Include="sqlController.js">
       <SubType>Code</SubType>
     </Content>
@@ -54,6 +68,8 @@
     <Content Include="views\profile.hbs" />
     <Content Include="views\results.hbs" />
     <Content Include="views\search.hbs" />
+    <Content Include="views\update-expert-skills.hbs" />
+    <Content Include="views\update-expert.hbs" />
     <Content Include="views\welcome.hbs" />
     <Content Include="welcome.js">
       <SubType>Code</SubType>

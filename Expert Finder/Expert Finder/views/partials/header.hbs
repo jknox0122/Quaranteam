@@ -6,72 +6,49 @@
     <section id="add"><a href="/add-expert">Add Expert</a></section>
 </div>
 
-Search
+SEARCH
 
-<select name="category" id="category" onchange="showSearch()">
+<label for="category">Category</label>
+<select name="category" id="search_category" onchange="showSkills('search')">
     {{#each category}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<select name="skills" id="skills">
+<label for="skills">Skills</label>
+<select name="skills" id="search_skills">
     {{#each skill}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<select hidden name="industry" id="industry">
+<label hidden for="industry">Industry</label>
+<select hidden name="industry" id="search_industry">
     {{#each industry}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
-<select hidden name="course" id="course">
+<label hidden for="course">Course</label>
+<select hidden name="course" id="search_course">
     {{#each course}}
     <option value='{{id}}'>{{name}}</option>
     {{/each}}
 </select>
 
+<label for="experience">Experience</label>
+<select name="experience" id="experience">
+    {{#each experience}}
+    <option value='{{id}}'>{{name}}</option>
+    {{/each}}
+</select>
 
-<button type="button" onclick="searchSkills();" class="table-details tooltip">
+
+<button type="button" onclick="searchSkills('search');" class="table-details tooltip">
     <span class="tooltip-text">Search</span>
 </button>
 <br />
 <hr />
-<script>
 
-    function showSearch() {
-        var cat = document.getElementById("category").value;
-        if (cat == 1) {
-            document.getElementById("skills").hidden = false;
-            document.getElementById("industry").hidden = true;
-            document.getElementById("course").hidden = true;
-        }
-        else if (cat == 2) {
-            document.getElementById("skills").hidden = true;
-            document.getElementById("industry").hidden = false;
-            document.getElementById("course").hidden = true;
-        }
-        else if (cat == 3) {
-            document.getElementById("skills").hidden = true;
-            document.getElementById("industry").hidden = true;
-            document.getElementById("course").hidden = false;
-        }
 
-    }
 
-    function searchSkills() {
-        var cat = document.getElementById("category").value;
-        if (cat == 1) {
-            var skill = document.getElementById("skills").value;
-        }
-        else if (cat == 2) {
-            var skill = document.getElementById("industry").value;
-        }
-        else if (cat == 3) {
-            var skill = document.getElementById("course").value;
-        }
-        var query = ("/search/results/" + encodeURIComponent(skill));
-        window.location = query;
-    }
-</script>

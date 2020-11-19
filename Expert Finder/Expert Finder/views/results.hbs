@@ -1,4 +1,4 @@
-<p>Results:</p>
+<h2>Results</h2>
     {{#if experts.length}}
     <table class="results-table">
         <thead>
@@ -24,5 +24,6 @@
         </tbody>
     </table>
     {{else}}
-    <p>No experts included.</p>
+    <h4>No experts found, try again?</h4>
+    <a href='/search'><button>Return to Search</button></a>
     {{/if}}
