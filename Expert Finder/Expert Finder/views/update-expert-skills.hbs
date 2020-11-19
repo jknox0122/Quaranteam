@@ -1,49 +1,53 @@
-     <body>
+<link href="/public/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="frame">
+  <main class="main">
+          <nav>
+          <div hidden id="ID">{{selected_expert.ExpertID}}</div>
+          <div class="name">
+              <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
+          </div>
+          <div class="profile_pic">
+              <p1>{Profile Picture}</p1>
+              <br>
+              <br>
+              <p1>About: {{selected_expert.About}}</p1>
+              <br>
+              <br>
+          </div>
+          <div class="profile_info">
+              <p1>Email: {{selected_expert.ProfileEmail}}</p1>
+              <br>
+              <br>
+              <a href="http://www.twitter.com/{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
+              &nbsp
+              <a href="http://www.linkedin.com/in/{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
+              &nbsp
+              <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github"></a>
+              &nbsp
+              <a class="btn btn-primary btn-sm" href="/experts/update/{{selected_expert.ExpertID}}" role="button">Update</a>
+          </div>
+      </nav>
+    <body>
         <h2>Update Expert Skills:</h2>
 
-        <form>
-            <label>Skill:</label>
-                          <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+        <form class='form' id="update-expert-skills" action="/experts/view" method="post" >
 
-                          <label>Experience:</label>
-                          <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                            <br>
+             <label>Skill:</label>            
+                <input type="text" name="name" class="form-control" value="{{update_skill.name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+
+                <label>Experience:</label>
+                <input type="text" name="Experience" class="form-control" value="{{update_skill.Experience}}" style="width: 100px; height: 20px;">
+                <input type="hidden" id="ExpertID" name="ExpertID" value="{{update_skill.ExpertID}}">
+                <input type="hidden" id="ExpertSkillsID" name="ExpertSkillsID" value="{{update_skill.ExpertSkillsID}}">
+                <br>
         </form>
-             <!--  {{#if profile_skill.length}}
-                  <br>                
-    
-                      {{#each profile_skill}}
-                
 
-                          <label>Skill:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+          <button class="btn btn-secondary" onclick="updateExpertSkills({{update_skill.ExpertID}})">Update</button>
 
-		      			  <label>Experience:</label>
-		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                   			<br>
-                      {{/each}}
-              {{/if}}
-              {{#if profile_industry.length}}
-                  <br>
-                      {{#each profile_industry}}
-                            <label>Industry:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
+      <!-- update script reference -->
+    <script src="/updateExpert.js"></script>
 
-		      			  <label>Experience:</label>
-		      			  <input type="text" class="form-control" value="{{Experience}}" style="width: 100px; height: 20px;">
-                   			<br>
-                      {{/each}}
-              {{/if}}
-              {{#if profile_course.length}}
-                  <br>
-                      {{#each profile_course}}
-                          <label>Course:</label>
-		      			  <input type="text" class="form-control" value="{{name}}" style="width: 200px; height: 20px; margin-right: 20px" >
-
-		      			  
-                   			<br>
-                      {{/each}}
-              {{/if}} -->
       </body>
 
 </main>
