@@ -3,37 +3,27 @@ module.exports = function () {
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
 	let skills = require('./skills.js');
-
-	// Name: search
-	// Description: Search for expert
-	function searchSkill(sqlControl, index) {
-		var query = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
-		query += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
-		query += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
-		query += "WHERE s.SkillID = ? ";
-		query += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
-		sqlControl.setQuery(query, index);
-		sqlControl.executeQuery('experts', 2)
-	}
+	let rend = require('./renderer.js');
 
 	// Display the skills currently in the database so the user can select the skill and search on it.
 	router.get('/', function (req, res) {
 		var mysql = req.app.get('mysql');
-		let sqlObj = new sqlC.sqlController(res, mysql);
-		sqlObj.setUpIteration(4, 'search');
-		let skillObj = new skills.Skills(-1);
-		skillObj.setUpSkills(sqlObj);
+		let sqlObj = new sqlC.sqlController(mysql);			// Controls sql queries
+		let rendObj = new rend.Renderer(res, 4, 'search')	// Controls displays
+		let skillObj = new skills.Skills(-1);				// Controls skill info
+		skillObj.setUpSkills(rendObj, sqlObj);
 	});
 
 	// Return the search results
 	router.get('/results/:skill', function (req, res) {
 		var mysql = req.app.get('mysql');
 		var skill = [req.params.skill];
-		let sqlObj = new sqlC.sqlController(res, mysql);
-		sqlObj.setUpIteration(5, 'results');
-		searchSkill(sqlObj, skill);
+		let sqlObj = new sqlC.sqlController(mysql);
+		let rendObj = new rend.Renderer(res, 5, 'results')
 		let skillObj = new skills.Skills(-1);
-		skillObj.setUpSkills(sqlObj);
+		skillObj.setUpSkills(rendObj, sqlObj);
+		skillObj.searchSkill(sqlObj, skill);
+		sqlObj.executeQuery('experts', rendObj, true);
 	});
 
 

@@ -18,16 +18,16 @@ function showSkills(page) {
     }
 }
 
-function searchSkills() {
-    var cat = document.getElementById("search_category").value;
+function searchSkills(page) {
+    var cat = document.getElementById(page + "_category").value;
     if (cat == 1) {
-        var skill = document.getElementById("search_skills").value;
+        var skill = document.getElementById(page +"_skills").value;
     }
     else if (cat == 2) {
-        var skill = document.getElementById("search_industry").value;
+        var skill = document.getElementById(page +"_industry").value;
     }
     else if (cat == 3) {
-        var skill = document.getElementById("search_course").value;
+        var skill = document.getElementById(page + "_course").value;
     }
     var query = ("/search/results/" + encodeURIComponent(skill));
     window.location = query;
@@ -50,8 +50,7 @@ function addSkill() {
     var skillID = document.getElementById(index).value;
     var skillValue = document.getElementById(index).selectedIndex;
     var skillName = document.getElementById(index).options[skillValue].text;
-    let experience = document.getElementById("experience").value;
-
+    var exp = document.getElementById("add_experience").value;
     var rowFound = -1;
     for (var i = 0, row; row = table.rows[i]; i++) {
         if (row.cells[0].textContent == cat && row.cells[1].textContent == skillID) {
@@ -60,7 +59,7 @@ function addSkill() {
     }
 
     if (rowFound > 0) {
-        table.rows[rowFound].cells[3].textContent = experience
+        table.rows[rowFound].cells[3].textContent = exp
     }
     else {
         let row = table.insertRow(-1);
@@ -72,7 +71,7 @@ function addSkill() {
         cell1.appendChild(document.createTextNode(cat));
         cell2.appendChild(document.createTextNode(skillID));
         cell3.appendChild(document.createTextNode(skillName));
-        cell4.appendChild(document.createTextNode(experience));
+        cell4.appendChild(document.createTextNode(exp));
 
         cell1.hidden = true;
         cell2.hidden = true;

@@ -30,8 +30,7 @@
       </nav>
       <body>
           <div class="table_container">
-              {{#if profile_skill.length}}
-              <div class='skills'>
+              <div>
                   <br>
                   <table class='skills'>
                       <caption class="results-table-header-label">Technical Skills</caption>
@@ -40,22 +39,21 @@
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
                       </tr>
                       {{/each}}
                   </table>
               </div>
-              {{/if}}
               {{#if profile_industry.length}}
-              <div class='industry'>
+              <div >
                   <br>
-                  <table class='industry'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}
@@ -63,15 +61,15 @@
               </div>
               {{/if}}
               {{#if profile_course.length}}
-              <div class='courses'>
+              <div>
                   <br>
-                  <table class='courses'>
+                  <table class='skills'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
                       <tr>
                           <td>{{name}}</td>
                           <td></td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update/{{ExpertID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}

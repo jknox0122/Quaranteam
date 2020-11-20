@@ -1,65 +1,42 @@
+// This is the class object that controls what a page displays in handlebars.
+// It's also the database interface, which is probably a bad idea to combine....
+// Possible code smell fix?
+
 module.exports.sqlController = class sqlController {
-	constructor(res, mysql, count) {
-		this.mysql = mysql;
-		this.res = res;
-		this.sql = "";
-		this.iterations = count;
-		this.inserts = {};
-		this.context = {}
+	constructor(mysql) {
+		this.mysql = mysql;			// mysql object that connects to the db
+		this.inserts = [];			// The variables used in a sql query
+		this.query = "";
 	}
 
+	// Set the sql query and any variables that are used in the query
 	setQuery(query, params) {
 		this.sql = query;
 		this.inserts = params;
 	}
 
-	setUpIteration(counter, nextPage) {
-		this.iterations = counter;
-		this.nextPage = nextPage;
-		this.callBack = 0;
-    }
-
+	// Add a parameter to the variables used in a SQL query
 	addParam(param) {
 		this.inserts.push(param);
 	}
 
-	addContext(param, value) {
-		this.context[param] = value; 
-    }
-
-	// Name: executeInsert
-	// Description: General purpose function to execute mysql. This one doesn't need to return any results and just inserts data into the database
-	executeInsert() {
-		this.mysql.pool.query(this.sql, this.inserts, function (error, results, fields) {
-
-			if (error) {
-				console.log((JSON.stringify(error)));
-				this.res.end();
-			}
+	// Light weight function to insert data into a sql query then run another function on the returned data
+	insertData(complete) {
+		this.mysql.pool.query(this.sql, this.inserts, function (error, result, fields) {
+			complete(result.insertId);
 		});
 	}
 
-	// Name: executeQuery
-	// Description: General purpose function used run sql queries
-	// Parameters:	The handlebarResults is the name of the context obj used in handlebars
-	//				The count is whether it is one item retured or multiple
-	executeQuery(handlebarsResults, count) {
-		var currentSQL = this;
+	// Executes SQL queries then renders a new page
+	executeQuery(handlebarsResults, rendObj, multiple) {
 		this.mysql.pool.query(this.sql, this.inserts, function (error, results, fields) {
-			if (error) {
-				this.res.write(JSON.stringify(error));
-				this.res.end();
-			}
-			if (count == 1) {
-				currentSQL.context[handlebarsResults] = results[0];
+			if (multiple) {
+				rendObj.addContext(handlebarsResults, results);
 			}
 			else {
-				currentSQL.context[handlebarsResults] = results;
-            }
-			currentSQL.callBack++;
-			if (currentSQL.callBack >= currentSQL.iterations) {
-				currentSQL.res.render(currentSQL.nextPage, currentSQL.context);
+				rendObj.addContext(handlebarsResults, results[0]);
 			}
+			rendObj.displayPage(error);
 		});
 	}
 
