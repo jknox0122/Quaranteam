@@ -41,6 +41,7 @@ module.exports.Expert = class Expert {
 		this.profileBuilder(params.linkedin, "LinkedInLink");
 		this.profileBuilder(params.git, "GithubLink");
 		this.profileBuilder(params.about, "About");
+		this.profileBuilder(params.profilePic, "ProfilePicture");
 		this.sql_construct.sql1 += ")";
 		this.sql_construct.sql2 += ")";
 		sql = this.sql_construct.sql1 + this.sql_construct.sql2;

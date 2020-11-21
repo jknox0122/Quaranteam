@@ -45,6 +45,11 @@ function addExpert() {
         expert['twitter'] = twitter;
     }
 
+    var profilePic = document.getElementById('profilePic').value;
+    if (profilePic != ""){
+        expert['profilePic'] = profilePic;
+    }
+
     $.ajax({
         url: '/add-expert',
         type: 'PUT',

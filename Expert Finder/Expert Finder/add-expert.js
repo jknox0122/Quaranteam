@@ -21,7 +21,7 @@ module.exports = function () {
 		var mysql = req.app.get('mysql');
 		let sqlObj = new sqlC.sqlController(mysql);			// Render and database interface
 
-		expertData = req.body.expert;						// Get teh data from the post
+		expertData = req.body.expert;						// Get the data from the post
 		skillData = req.body.skillset;
 
 		let expObj = new exp.Expert(-1);					// Create a new user
