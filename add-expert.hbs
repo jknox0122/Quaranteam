@@ -1,20 +1,108 @@
-<h1>The Edit Page</h1>
-<form name="add-expert" action="/add-expert" method="post">
-    <fieldset>
-        <label for="fname">First Name:</label>
-        <input type="text" name="fname">
-        <label for="fname">Last Name:</label>
-        <input type="text" name="lname">
-        <label for="fname">Email:</label>
-        <input type="text" name="email">
-        <label for="fname">About:</label>
-        <input type="text" name="about">
-        <label for="fname">Github link:</label>
-        <input type="text" name="git">
-        <label for="fname">LinkedIn:</label>
-        <input type="text" name="linkedin">
-        <label for="fname">Twitter:</label>
-        <input type="text" name="twitter">
-        <input type="submit" value="Add User">
-    </fieldset>
-</form>
+<h1>Add an Expert</h1>
+<div>
+    <form id="add-expert" action="/experts" method="post">
+        <fieldset>
+            <ul class="form" style="list-style:none;">
+            <li>  
+            <label for="fname">First Name:</label>
+            </li>
+            <li>
+            <input id ="fname" type="text" name="fname">
+            </li>
+            <li>
+            <label for="fname">Last Name:</label>
+            </li>
+            <li>
+            <input id ="lname" type="text" name="lname"><br>
+            </li>
+            <li>
+            <label for="fname">About:</label>
+            </li>
+            <li>
+            <input id ="about" type="text" name="about"><br>
+            </li>
+            <li>
+            <label for="fname">Email:</label>
+            </li>
+            <li>
+            <input id="email" type="text" name="email"><br>
+            </li>
+            <li>
+            <label for="git">Github link:</label>
+            </li>
+            <li>
+            <input id ="git" type="text" name="git"><br>
+            </li>
+            <li>
+            <label for="linkedin">LinkedIn:</label>
+            </li>
+            <li>
+            <input id="linkedin" type="text" name="linkedin"><br>
+            </li>
+            <li>
+            <label for="twitter">Twitter:</label>
+            </li>
+            <li>
+            <input id="twitter" type="text" name="twitter"><br>
+            </li>
+            <li>
+            <label for="profilePic">Profile Picture Link:</label>
+            </li>
+            <li>
+            <input id="profilePic" type="text" name="profilePic">
+            </li>
+            </ul>
+            <p>Add a skill:</p>
+            <label for="category">Categories</label><br />
+            <select id="add_category" name="category" onchange="showSkills('add')">
+                {{#each category}}
+                <option value='{{id}}'>{{name}}</option>
+                {{/each}}
+            </select><br />
+            <label>Skills:</label><br />
+            <select id="add_skills" name="skill">
+                {{#each skill}}
+                <option value='{{id}}'>{{name}}</option>
+                {{/each}}
+            </select>
+            <select hidden id="add_industry" name="industry">
+                {{#each industry}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <select hidden id="add_course" name="course">
+                {{#each course}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <br />
+            <label>Experience (years)</label><br />
+            <input type="number" id="add_experience">
+
+            <input type="button" value="Add Skill" onclick="addSkill()"><br /><br />
+            <table hidden name="skills" id="skills_table" class="results-table">
+                <thead>
+                    <tr>
+                        <th hidden>CategoryID</th>
+                        <th hidden>SkillID</th>
+                        <th>Skill</th>
+                        <th>Experience</th>
+                    </tr>
+                <tbody>
+                </tbody>
+                </thead>
+                <tbody id="body_skills">
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+    <button class="submit" type="button" onclick="addExpert()">Add Expert</button>
+
+</div>
+<style>
+li {
+    position: relative;
+    left: -40px;    
+}​
+</style>
+
