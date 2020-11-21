@@ -20,7 +20,7 @@ module.exports = function () {
 		sqlObj.executeQuery('selected_expert', 1);
 	}
 	function getSingleSkillByID(sqlObj, index) {
-		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID, es.ExpertSkillsID FROM ExpertSkills es ";
+		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID, es.ExpertSkillsID, e.ProfilePicture FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
 		query += "WHERE es.ExpertSkillsID = ? ";
@@ -117,9 +117,12 @@ module.exports = function () {
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Experts SET Experts.FirstName=?, Experts.LastName=?, Experts.ProfileEmail=?, Experts.About=?, " + 
-        		   "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=? WHERE Experts.ExpertID=?";
+        		   "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=?, Experts.ProfilePicture=? WHERE Experts.ExpertID=?";
 
-        var inserts = [req.body.FirstName,req.body.LastName, req.body.ProfileEmail, req.body.About, req.body.GithubLink,  req.body.LinkedInLink,  req.body.TwitterLink, req.params.id];
+        var inserts = [req.body.FirstName,req.body.LastName, req.body.ProfileEmail, req.body.About, req.body.GithubLink,  
+        				req.body.LinkedInLink,  req.body.TwitterLink, req.body.ProfilePicture, req.params.id];
+
+        console.log("INSERTS: " + inserts);
 
         sql = mysql.pool.query(sql, inserts,function(error, results, fields){
             if(error){
