@@ -1,6 +1,5 @@
 // This is the class object that controls what a page displays in handlebars.
-// It's also the database interface, which is probably a bad idea to combine....
-// Possible code smell fix?
+// It's also the database interface
 
 module.exports.sqlController = class sqlController {
 	constructor(mysql) {
@@ -13,11 +12,6 @@ module.exports.sqlController = class sqlController {
 	setQuery(query, params) {
 		this.sql = query;
 		this.inserts = params;
-	}
-
-	// Add a parameter to the variables used in a SQL query
-	addParam(param) {
-		this.inserts.push(param);
 	}
 
 	// Light weight function to insert data into a sql query then run another function on the returned data

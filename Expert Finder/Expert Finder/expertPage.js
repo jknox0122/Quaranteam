@@ -72,11 +72,6 @@ module.exports = function () {
 		let sqlObj = new sqlC.sqlController(mysql);
 		let rendObj = new rend.Renderer(res, 1, 'update-expert'); // Display controller
 
-		// let skillObj1 = new skills.Skills(-1);				// Set up the profile's skills
-		// let skillObj2 = new skills.Skills(index);
-		// skillObj1.setUpSkills(rendObj, sqlObj, "");
-		// skillObj2.setUpSkills(rendObj, sqlObj, "profile_");
-
 		let expObj = new expert.Expert(index);				// Set up the expert profile
 		expObj.getExperts(rendObj, sqlObj);
 	
