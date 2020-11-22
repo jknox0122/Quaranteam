@@ -43,12 +43,13 @@ module.exports.Skills = class Skills {
 
 	// Grabs the skills by expertID and categoryID
 	getSkillsByID() {
-		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID FROM ExpertSkills es ";
+		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID, s.SKillID FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
 		query += "WHERE s.FK_CategoryID = " + this.category + " AND e.ExpertID = ? ";
 		return query;
 }
+
 
 	// Grabs all skills in the category associated with the class
 	getAllSkills() {

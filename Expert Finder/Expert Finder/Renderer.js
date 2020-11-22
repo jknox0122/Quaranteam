@@ -12,6 +12,8 @@ module.exports.Renderer = class Renderer {
 	// Add a handlebars parameter to display on the results page
 	addContext(param, value) {
 		this.context[param] = value;
+		console.log("PARAM: " + param);
+		console.log("VALUE: " + JSON.stringify(value));
 	}
 
 	displayPage(error) {

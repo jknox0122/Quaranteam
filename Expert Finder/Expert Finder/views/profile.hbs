@@ -1,3 +1,7 @@
+{{#each this}}
+    {{log this}}    
+{{/each}}
+
 <link href="/public/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="frame">
@@ -36,24 +40,27 @@
                       <caption class="results-table-header-label">Technical Skills</caption>
     
                       {{#each profile_skill}}
+                      {{log this}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
                       </tr>
                       {{/each}}
                   </table>
               </div>
               {{#if profile_industry.length}}
+             
               <div >
                   <br>
                   <table class='skills'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
+                       {{log this}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}
@@ -66,10 +73,12 @@
                   <table class='skills'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
+              {{log this}}
+
                       <tr>
                           <td>{{name}}</td>
                           <td></td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertSkillsID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}
