@@ -37,11 +37,18 @@ SEARCH
 </select>
 
 <label class="header_label" for="experience">Experience</label>
-<select class="header_select" name="experience" id="experience">
-    {{#each experience}}
-    <option value='{{id}}'>{{name}}</option>
-    {{/each}}
-</select>
+        <select class="header_select" name="experience" id="search_experience">
+            <option value='1'>1+ Years</option>
+            <option value='2'>2+ Years</option>
+            <option value='3'>3+ Years</option>
+            <option value='4'>4+ years</option>
+            <option value='5'>5+ years</option>
+            <option value='6'>6+ years</option>
+            <option value='7'>7+ years</option>
+            <option value='8'>8+ years</option>
+            <option value='9'>9+ years</option>
+            <option value='10'>10+ years</option>
+        </select>
 
 <button id="header_search_button" type="button" onclick="searchSkills('search');" class="table-details tooltip">
     <span class="tooltip-text">Search</span>

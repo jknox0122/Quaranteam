@@ -15,14 +15,15 @@ module.exports = function () {
 	});
 
 	// Return the search results
-	router.get('/results/:skill', function (req, res) {
+	router.get('/results/:skill/:experience', function (req, res) {
 		var mysql = req.app.get('mysql');
 		var skill = [req.params.skill];
+		var experience = [req.params.experience];
 		let sqlObj = new sqlC.sqlController(mysql);
 		let rendObj = new rend.Renderer(res, 5, 'results')
 		let skillObj = new skills.Skills(-1);
 		skillObj.setUpSkills(rendObj, sqlObj);
-		skillObj.searchSkill(sqlObj, skill);
+		skillObj.searchSkill(sqlObj, skill,experience);
 		sqlObj.executeQuery('experts', rendObj, true);
 	});
 

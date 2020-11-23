@@ -21,6 +21,7 @@ app.engine('hbs', handlebars({
     extname: 'hbs',
     defaultLayout: 'main'
 }));
+
 app.set('port', port);
 app.set('mysql', mysql);
 

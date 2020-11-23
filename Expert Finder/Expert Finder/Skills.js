@@ -20,8 +20,7 @@ module.exports.Skills = class Skills {
 		function newfunc(id) {
 			return;
 		}
-    }
-
+	}
 	// Returns the query that will be used to either get all skills in a category or all of the skills associated with a specific expert
 	getSkills() {
 		var query = "";
@@ -81,13 +80,15 @@ module.exports.Skills = class Skills {
 	}
 
 	// Searches for an expert with a set skill set
-	searchSkill(sqlControl, index) {
+	searchSkill(sqlControl, index, experience) {
 		var query = "SELECT e.ExpertID, e.FirstName, e.LastName, e.ProfileEmail, e.GithubLink, e.About FROM Experts e "
 		query += "INNER JOIN ExpertSkills es ON es.FK_ExpertID = e.ExpertID ";
 		query += "INNER JOIN Skills s ON es.FK_SkillID = s.SkillID ";
-		query += "WHERE s.SkillID = ? ";
+		query += "WHERE s.SkillID = ? AND es.Experience >= ? ";
 		query += "GROUP BY e.ExpertID ORDER BY e.LastName DESC";
-		sqlControl.setQuery(query, index);
+		var insert = [index,experience];
+		sqlControl.setQuery(query, insert);
+		
 }
 
 };

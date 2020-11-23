@@ -6,7 +6,6 @@
 		sqlObj.setQuery(query, index);
 		sqlObj.executeQuery('update_skill', rendObj, true);
 		// sqlObj.executeQuery('update-expert-skills', rendObj, true);
-
 	}
 
 // Displays a list of experts or just a single profile

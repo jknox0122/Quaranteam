@@ -32,6 +32,7 @@
 <script>
     function searchSkills() {
         var cat = document.getElementById("category").value;
+        var experience = document.getElementById("expereience").value;
         if (cat == 1) {
             var skill = document.getElementById("skills").value;
         }
@@ -41,7 +42,7 @@
         else if (cat == 3) {
             var skill = document.getElementById("course").value;
         }
-        var query = ("/search/results/" + encodeURIComponent(skill));
+        var query = ("/search/results/" + encodeURIComponent(skill)+ "/" + encodeURIComponent(experience));
         alert(query);
         window.location = query;
     }

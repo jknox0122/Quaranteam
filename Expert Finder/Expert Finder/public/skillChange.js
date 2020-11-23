@@ -20,6 +20,7 @@ function showSkills(page) {
 
 function searchSkills(page) {
     var cat = document.getElementById(page + "_category").value;
+    var experience = document.getElementById(page+"_experience").value;
     if (cat == 1) {
         var skill = document.getElementById(page +"_skills").value;
     }
@@ -29,7 +30,7 @@ function searchSkills(page) {
     else if (cat == 3) {
         var skill = document.getElementById(page + "_course").value;
     }
-    var query = ("/search/results/" + encodeURIComponent(skill));
+    var query = ("/search/results/" + encodeURIComponent(skill) + "/" + encodeURIComponent(experience));
     window.location = query;
 }
 
