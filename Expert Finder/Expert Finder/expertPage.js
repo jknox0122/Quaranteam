@@ -4,7 +4,7 @@
 		query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
 		query += "WHERE es.ExpertSkillsID = ? ";
 		sqlObj.setQuery(query, index);
-		sqlObj.executeQuery('update_skill', rendObj, true);
+		sqlObj.executeQuery('update_skill', rendObj, false);
 		// sqlObj.executeQuery('update-expert-skills', rendObj, true);
 
 	}
