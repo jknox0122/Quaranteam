@@ -1,6 +1,5 @@
 function executeFun(){
     const gitDetails = document.getElementById("gitLink").value;
-
     const xhr = new XMLHttpRequest();
 
     const url = 'https://api.github.com/users/'+gitDetails+'/repos';
@@ -15,18 +14,29 @@ function executeFun(){
 
         if (gitDetails == "git" || gitDetails == "Git" || gitDetails == null){
             txt = "No Github Account";
-        } else {
-            for(i in data){
-                txt += data[i].name + " ";
-            }
+            tooltip.innerHTML = txt;
+        } else{
+        if(document.getElementById('check').id == 'check'){
+            var lab = document.createElement('h3');
+            var label = gitDetails + " Repositories";
+            var ul = document.createElement('ul');
+            var list = document.getElementById('tooltip');
+            lab.innerHTML = label;
+            ul.appendChild(lab);
+            list.appendChild(ul);
+        for(i = 0; i<5;i++){
+        var anchor = document.createElement('a');
+        var li = document.createElement('li');
+        anchor.href = 'http://github.com/'+gitDetails+"/"+data[i].name;
+        anchor.innerHTML = data[i].name;
+        li.appendChild(anchor);
+        list.appendChild(li);
         }
-        for(let i in data) {
-            console.log('Repo:', data[i].name);
-            console.log('==============')
-            //alert(data[i].name)
+        var check = document.getElementById('check');
+        check.id = "check1";
         }
-        tooltip.innerHTML = txt
     }
-
+    }
     xhr.send();
+
 }
