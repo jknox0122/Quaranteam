@@ -1,3 +1,5 @@
+<script src="/gitHub.js"></script>
+
 {{#each this}}
     {{log this}}    
 {{/each}}
@@ -27,7 +29,11 @@
               &nbsp
               <a href="http://www.linkedin.com/in/{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
               &nbsp
-              <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github"></a>
+              <div class="tooltip">
+                <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github" onmouseover="executeFun()"></a>
+                <span id="tooltip" class="tooltiptext"></span>
+              </div>
+              <input type="hidden" id="gitLink" value="{{selected_expert.GithubLink}}">
               &nbsp
               <a class="btn btn-primary btn-sm" href="/experts/update/{{selected_expert.ExpertID}}" role="button">Update</a>
           </div>

@@ -1,6 +1,16 @@
 // Skills Class
 // This contains the methods necessary to retrieve and use skill info
 
+function getSingleSkillByID(sqlObj, rendObj, index) {
+	var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID, es.ExpertSkillsID FROM ExpertSkills es ";
+	query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
+	query += "INNER JOIN Skills s ON s.SkillID = es.FK_SkillID ";
+	query += "WHERE es.ExpertSkillsID = ? ";
+	sqlObj.setQuery(query, index);
+	sqlObj.executeQuery('update_skill', rendObj, false);
+	// sqlObj.executeQuery('update-expert-skills', rendObj, true);
+}
+
 module.exports.Skills = class Skills {
 	constructor(expertID) {
 		this.expertID = expertID;		// The expert this set of skills applies to

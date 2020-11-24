@@ -9,6 +9,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "github-api": "^3.3.0",
     "mssql": "^6.2.3",
     "mysql": "^2.18.1",
     "sql": "^0.78.0",

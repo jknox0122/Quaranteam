@@ -1,3 +1,5 @@
+const { request } = require('express');
+
 	function getSingleSkillByID(sqlObj, rendObj, index) {
 		var query = "SELECT s.SkillName as name,  es.Experience, e.ExpertID, es.ExpertSkillsID FROM ExpertSkills es ";
 		query += "INNER JOIN Experts e ON es.FK_ExpertID = e.ExpertID ";
@@ -45,8 +47,10 @@ module.exports = function () {
 
 		let expObj = new expert.Expert(index);				// Set up the expert profile
 		expObj.getExperts(rendObj, sqlObj);
+		console.log('success');
 	});
 
+	
 
 
 

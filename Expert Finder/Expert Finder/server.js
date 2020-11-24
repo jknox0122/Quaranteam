@@ -1,4 +1,3 @@
-
 //Loads the express module
 const express = require('express');
 const path = require('path');
@@ -49,3 +48,5 @@ app.use(function (err, req, res, next) {
 
 //Makes the app listen to port 3000
 app.listen(port, () => console.log(`App listening to port ${port}`));
+
+
