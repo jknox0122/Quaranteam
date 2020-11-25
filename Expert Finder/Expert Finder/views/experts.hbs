@@ -11,18 +11,18 @@
                     <th>Email</th>
                     <th>Github</th>
                     <th>About</th>
-                    <th>Profile Link</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             {{#each expert}}
                 <tr>
                     <td hidden>{{ExpertID}}</td>
-                    <td><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
-                    <td>{{ProfileEmail}}</td>
-                    <td><a href="http://github.com/{{GithubLink}}" class="fa fa-github"></a></td>
-                    <td>{{About}}</td>
-                    <td>
+                    <td width=25%><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
+                    <td width=23%>{{ProfileEmail}}</td>
+                    <td width=7%><a href="http://github.com/{{GithubLink}}" class="fa fa-github"></a></tdwidth=30%>
+                    <td width=40%>{{About}}</tdwidth=30%>
+                    <td width=5%>
                         <button type="button" onclick="window.location.href='/experts/view/{{ExpertID}}';" class="table-details tooltip">
                             <span class="tooltip-text">View profile</span>
                         </button>
