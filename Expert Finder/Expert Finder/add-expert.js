@@ -23,7 +23,7 @@ module.exports = function () {
 
 		expertData = req.body.expert;						// Get the data from the post
 		skillData = req.body.skillset;
-
+		console.log(skillData);
 		let expObj = new exp.Expert(-1);					// Create a new user
 		query = expObj.addExpert(expertData);
 		sqlObj.setQuery(query, expObj.sql_construct.inserts);	
@@ -32,8 +32,9 @@ module.exports = function () {
 		sqlObj.insertData(complete);
 
 		function complete(expertID) {						// Once we get the ID of the user, we can add skills
+			console.log(expertID)
 			skillObj.expertID = expertID;
-			if (skillData.length > 0) {
+			if (typeof skillData != 'undefined') {
 				skillObj.addSkill(sqlObj, skillData);
 			}
 			res.status(200);

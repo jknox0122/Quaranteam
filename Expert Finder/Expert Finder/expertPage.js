@@ -47,7 +47,6 @@ module.exports = function () {
 
 		let expObj = new expert.Expert(index);				// Set up the expert profile
 		expObj.getExperts(rendObj, sqlObj);
-		console.log('success');
 	});
 
 	
@@ -88,8 +87,6 @@ module.exports = function () {
 
         var inserts = [req.body.FirstName,req.body.LastName, req.body.ProfileEmail, req.body.About, req.body.GithubLink,  
         				req.body.LinkedInLink,  req.body.TwitterLink, req.body.ProfilePicture, req.params.id];
-
-        console.log("INSERTS: " + inserts);
 
         sql = mysql.pool.query(sql, inserts,function(error, results, fields){
             if(error){

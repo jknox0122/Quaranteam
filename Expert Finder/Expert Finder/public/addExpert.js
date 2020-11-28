@@ -47,7 +47,7 @@ function addExpert() {
 
     var profilePic = document.getElementById('profilePic').value;
     if (profilePic != ""){
-        expert['profilePic'] = profilePic;
+        expert['ProfilePicture'] = profilePic;
     }
 
     $.ajax({
