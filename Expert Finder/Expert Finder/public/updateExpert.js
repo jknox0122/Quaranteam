@@ -24,3 +24,42 @@ function updateExpertSkills(id){
 
 
 
+function addExpertSkill(id){
+    console.log("~~~~~~~ !!!!!!!!!!!!!! Adding EXPERT SKILL");
+    $.ajax({
+        url: '/experts/skills/' + id,
+        type: 'PUT',
+        data: $('#add-skill').serialize(),
+        success: function(result){
+            window.location.replace("/experts/view/" + id);
+        }
+    })
+};
+
+
+
+        
+
+
+var mytextbox = document.getElementById('skillIDSelected');
+var mydropdown = document.getElementById('add_skills');
+var mydropdown2 = document.getElementById('add_industry');
+var mydropdown3 = document.getElementById('add_course');
+
+mydropdown.onchange = function(){
+    console.log("A CHANGE!");
+      mytextbox.value = this.value; //to appened
+     //mytextbox.innerHTML = this.value;
+ }
+
+ mydropdown2.onchange = function(){
+    console.log("A CHANGE!");
+      mytextbox.value = this.value; //to appened
+     //mytextbox.innerHTML = this.value;
+ }
+
+ mydropdown3.onchange = function(){
+    console.log("A CHANGE!");
+      mytextbox.value = this.value; //to appened
+     //mytextbox.innerHTML = this.value;
+ }

@@ -1,9 +1,5 @@
 <script src="/gitHub.js"></script>
 
-{{#each this}}
-    {{log this}}    
-{{/each}}
-
 <link href="/public/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="frame">
@@ -40,6 +36,10 @@
           </div>
       </nav>
       <body>
+                  
+
+
+        </div>
           <div class="table_container">
               <div>
                   <br>
@@ -47,7 +47,6 @@
                       <caption class="results-table-header-label">Technical Skills</caption>
     
                       {{#each profile_skill}}
-                      {{log this}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
@@ -63,7 +62,6 @@
                   <table class='skills'>
                       <caption class="results-table-header-label">Industries</caption>
                       {{#each profile_industry}}
-                       {{log this}}
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
@@ -80,7 +78,6 @@
                   <table class='skills'>
                       <caption class="results-table-header-label">Courses</caption>
                       {{#each profile_course}}
-              {{log this}}
 
                       <tr>
                           <td>{{name}}</td>
@@ -93,5 +90,54 @@
               </div>
               {{/if}}
           </div>
+
+           <button type="button" onclick="document.getElementById('add-expert-skill').style.visibility = 'visible'"> Add Skill </button>
+
+          <div id="add-expert-skill" style="visibility: hidden;">
+
+    <form class='form' id="add-skill" action="/experts/view" method="post" >
+
+<label for="category">Categories</label><br />
+            <select id="add_category" name="category" onchange="showSkills('add')">
+                {{#each category}}
+                <option value='{{id}}'>{{name}}</option>
+                {{/each}}
+            </select><br />
+            <label>Skills:</label><br />
+            <select id="add_skills" name="skill">
+                {{#each skill}}
+                <option  value='{{id}}'>{{name}}</option>
+                {{/each}}
+            </select>
+            <select hidden id="add_industry" name="industry">
+                {{#each industry}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <select hidden id="add_course" name="course">
+                {{#each course}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <br />
+            <label>Experience (years)</label><br />
+            <input type="number" id="add_experience" name="Experience">
+
+            <input type="hidden" id="ExpertID" name="ExpertID" value="{{selected_expert.ExpertID}}">
+            <!-- <input type="hidden" id="ExpertSkillsID" name="ExpertSkillsID" value="{{ExpertSkillsID}}"> -->
+            <input type="hidden" name="ExpertSkillsID" id="skillIDSelected" value = "1">
+            <br>
+        </form>
+
+
+
+          <button class="btn btn-secondary" onclick="addExpertSkill({{selected_expert.ExpertID}})">ADD</button>
+
+    <script src="/updateExpert.js">
+
+
+    </script>
+
       </body>
+
 </main>

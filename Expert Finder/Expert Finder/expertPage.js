@@ -49,6 +49,38 @@ module.exports = function () {
 		expObj.getExperts(rendObj, sqlObj);
 	});
 
+
+
+    router.put('/skills/:id', function(req, res){
+    	console.log("!!!!!!!!!!!!!! ADDING A SKILL TO AN EXPERT");
+        keys = Object.keys(req.body);
+		console.log(keys);
+		console.log(req.body.skill);
+
+
+
+        var mysql = req.app.get('mysql');
+        // var sql = "UPDATE Experts SET Experts.FirstName=?, Experts.LastName=?, Experts.ProfileEmail=?, Experts.About=?, " + 
+        		   // "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=?, Experts.ProfilePicture=? WHERE Experts.ExpertID=?";
+
+        var sql = "INSERT INTO ExpertSkills(FK_ExpertID, FK_SkillID, Experience) VALUES (?, ?, ?)"
+
+
+        var inserts = [req.body.ExpertID, req.body.ExpertSkillsID, req.body.Experience];
+
+        console.log("@@@@@ INSERTS:: " + inserts);
+        sql = mysql.pool.query(sql, inserts,function(error, results, fields){
+            if(error){
+               console.log(error)
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
+
 	
 
 
@@ -60,7 +92,25 @@ module.exports = function () {
 
 
 
+    router.put('/:id', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE Experts SET Experts.FirstName=?, Experts.LastName=?, Experts.ProfileEmail=?, Experts.About=?, " + 
+        		   "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=?, Experts.ProfilePicture=? WHERE Experts.ExpertID=?";
 
+        var inserts = [req.body.FirstName,req.body.LastName, req.body.ProfileEmail, req.body.About, req.body.GithubLink,  
+        				req.body.LinkedInLink,  req.body.TwitterLink, req.body.ProfilePicture, req.params.id];
+
+        sql = mysql.pool.query(sql, inserts,function(error, results, fields){
+            if(error){
+               console.log(error)
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
 
 
 
@@ -114,18 +164,6 @@ module.exports = function () {
 		let rendObj = new rend.Renderer(res, 1, 'update-expert-skills'); // Display controller
 
 		getSingleSkillByID(sqlObj,rendObj, index);
-
-		// let expObj = new expert.Expert(index);				// Set up the expert profile
-		// expObj.getExperts(rendObj, sqlObj);
-		/*
-		var mysql = req.app.get('mysql');
-		var index = [req.params.id];
-		let sqlControls = new sqlC.sqlController(res, mysql);
-		sqlControls.setUpIteration(1, 'update-expert-skills');
-
-		getSingleSkillByID(sqlControls, index);
-
-		*/
 
 
 	});
