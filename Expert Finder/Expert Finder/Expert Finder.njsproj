@@ -42,6 +42,7 @@
     <Content Include="public\profile.css" />
     <Content Include="public\skillChange.js" />
     <Content Include="public\style.css" />
+    <Content Include="public\updateExpert.js" />
     <Content Include="renderer.js">
       <SubType>Code</SubType>
     </Content>

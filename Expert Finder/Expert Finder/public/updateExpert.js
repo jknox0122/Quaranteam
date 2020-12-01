@@ -10,14 +10,14 @@ function updateExpert(id){
     })
 };
 
-function updateExpertSkills(id){
-	console.log("UPDATING EXPERT");
+function updateExpertSkills(id, expertID){
+    console.log("UPDATING EXPERT");
     $.ajax({
         url: '/experts/update-skill/' + id,
         type: 'PUT',
         data: $('#update-expert-skills').serialize(),
         success: function(result){
-            window.location.replace("/experts/view/" + id);
+            window.location.replace("/experts/view/" + expertID);
         }
     })
 };
@@ -45,6 +45,30 @@ var mytextbox = document.getElementById('skillIDSelected');
 var mydropdown = document.getElementById('add_skills');
 var mydropdown2 = document.getElementById('add_industry');
 var mydropdown3 = document.getElementById('add_course');
+
+categorydropdown = document.getElementById('add_category');
+
+categorydropdown.onchange = function () {
+    var cat = this.value;
+    if (cat == 1) {
+        mydropdown.hidden = false;
+        mydropdown2.hidden = true;
+        mydropdown3.hidden = true;
+        mytextbox.value = mydropdown.value; //to appened
+    }
+    else if (cat == 2) {
+        mydropdown.hidden = true;
+        mydropdown2.hidden = false;
+        mydropdown3.hidden = true;
+        mytextbox.value = mydropdown2.value; //to appened
+    }
+    else if (cat == 3) {
+        mydropdown.hidden = true;
+        mydropdown2.hidden = true;
+        mydropdown3.hidden = false;
+        mytextbox.value = mydropdown3.value; //to appened
+    }
+}
 
 mydropdown.onchange = function(){
     console.log("A CHANGE!");
