@@ -155,14 +155,15 @@ module.exports = function () {
 	// ====== Routers to update the expert skill info
 
 	//gets the experts skill and loads it into an update page
-	router.get('/update-skill/:id', function(req, res){
+	router.get('/update-skill/:expert/:id', function(req, res){
 
 		var mysql = req.app.get('mysql');
-		var index = [req.params.id];
-		let sqlObj = new sqlC.sqlController(mysql);
-
-		let rendObj = new rend.Renderer(res, 1, 'update-expert-skills'); // Display controller
-
+        var index = [req.params.id];
+        var expertID = [req.params.expert];
+        let sqlObj = new sqlC.sqlController(mysql);
+        let expObj = new expert.Expert(expertID); 
+		let rendObj = new rend.Renderer(res, 2, 'update-expert-skills'); // Display controller
+        expObj.getExperts(rendObj, sqlObj);
 		getSingleSkillByID(sqlObj,rendObj, index);
 
 

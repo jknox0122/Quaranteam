@@ -50,7 +50,7 @@
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
                       </tr>
                       {{/each}}
                   </table>
@@ -65,7 +65,7 @@
                       <tr>
                           <td>{{name}}</td>
                           <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}
@@ -82,7 +82,7 @@
                       <tr>
                           <td>{{name}}</td>
                           <td></td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{SKillID}}" role="button">Update</a></td>
+                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
 
                       </tr>
                       {{/each}}
@@ -98,7 +98,7 @@
     <form class='form' id="add-skill" action="/experts/view" method="post" >
 
 <label for="category">Categories</label><br />
-            <select id="add_category" name="category" onchange="showSkills('add')">
+            <select id="add_category" name="category"">
                 {{#each category}}
                 <option value='{{id}}'>{{name}}</option>
                 {{/each}}
