@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="/public/style.css" rel="stylesheet">
+<script src="/gitHub.js"></script>
+
 <section>
 
     {{#if expert.length}}
@@ -14,13 +16,18 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody></tbody>
             {{#each expert}}
                 <tr>
                     <td hidden>{{ExpertID}}</td>
                     <td width=25%><a href='/experts/view/{{ExpertID}}'>{{FirstName}} {{LastName}}</a></td>
                     <td width=23%>{{ProfileEmail}}</td>
-                    <td width=7%><a href="http://github.com/{{GithubLink}}" class="fa fa-github"></a></tdwidth=30%>
+                    <td width=7%>
+                        <div class="tooltip">
+                            <a href="http://github.com/{{GithubLink}}" class="fa fa-github" id="{{GithubLink}}" onmouseover="executeFun('{{GithubLink}}')"></a>
+                            <span id="tooltip{{GithubLink}}" class="tooltiptext"></span>
+                        </div>
+                    </tdwidth=30%>
                     <td width=40%>{{About}}</tdwidth=30%>
                     <td width=5%>
                         <button type="button" onclick="window.location.href='/experts/view/{{ExpertID}}';" class="table-details tooltip">
