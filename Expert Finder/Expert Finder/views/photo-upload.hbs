@@ -11,5 +11,12 @@
       </div>
     </div>
     <button type="submit" class="btn">Submit</button>
-  </form>
+</form>
+    <button type="button" class="btn" onclick="redirect({{selected_expert.ExpertID}});">Not Now</button>
   </div>
+
+<script>
+    function redirect(expertID){
+        window.location.href = "/experts/view/"+expertID;
+    }
+</script>
