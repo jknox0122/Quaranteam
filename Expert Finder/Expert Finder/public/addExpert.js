@@ -49,13 +49,12 @@ function addExpert() {
     if (profilePic != ""){
         expert['ProfilePicture'] = profilePic;
     }
-
     $.ajax({
         url: '/add-expert',
         type: 'PUT',
         data: { expert: expert, skillset: skillset },
         success: function (result) {
-            window.location.href = "/experts";
+            window.location.href = "/photo-upload/"+first_name+"/"+last_name;
         }
     });
 }

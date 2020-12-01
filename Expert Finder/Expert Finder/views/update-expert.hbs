@@ -12,8 +12,9 @@
               <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
           </div>
           <div class="profile_pic">
-              <p1><img src="{{selected_expert.ProfilePicture}}" style="height:auto;width:auto;max-width:300px;max-height:300px;"></p1>
+              <p1><img src="/uploads/{{selected_expert.ProfilePicture}}" style="height:auto;width:auto;max-width:300px;max-height:300px;"></p1>
               <br>
+              <a class="btn btn-primary btn-sm" href="/photo-upload/{{selected_expert.FirstName}}/{{selected_expert.LastName}}" role="button" style="font-size: small;">Add/Update Profile Picture</a>
               <br>
               <p1>About: {{selected_expert.About}}</p1>
               <br>
@@ -63,10 +64,6 @@
               	<label>Twitter Handle:</label>
 		      	<input type="text" class="form-control" value="{{selected_expert.TwitterLink}}" name="TwitterLink" style="width: 500px; height: 20px;">
               <br>
-
-                <label>Profile Picture Link:</label>
-                <input type="text" class="form-control" value="{{selected_expert.ProfilePicture}}" name="ProfilePicture" style="width:500px;height:20px;">
-                <br>
 
 
 

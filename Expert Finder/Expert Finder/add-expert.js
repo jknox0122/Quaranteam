@@ -39,7 +39,7 @@ module.exports = function () {
 			}
 			res.status(200);
 			res.end();
-       }
+	   }
 	});
 
 

@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/public/style.css" rel="stylesheet">
+
+  <div class="container">
+      <h3>{{selected_expert.FirstName}} {{selected_expert.LastName}} -- Add/Update Profile Picture</h3>
+<form action="/photo-upload/upload/{{selected_expert.ExpertID}}" method="POST" enctype="multipart/form-data">
+    <div class="file-field input-field">
+      <div class="btn grey">
+        <span>File</span>
+        <input name="myImage" type="file">
+      </div>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+  </div>

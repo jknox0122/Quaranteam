@@ -5,6 +5,8 @@ module.exports.Expert = class Expert {
 	constructor(expertID) {
 		this.expertID = expertID;
 		this.sql_construct = {};
+		this.firstName = expertID[0];
+		this.lastName = expertID[1];
 	}
 
 	getExperts(rendObj, sqlObj) {
@@ -17,6 +19,19 @@ module.exports.Expert = class Expert {
 			multiple = false;
 		}
 		sqlObj.setQuery(query, [this.expertID]);
+		sqlObj.executeQuery(profile, rendObj, multiple);
+	}
+
+	getExpertsByName(rendObj, sqlObj) {
+		var query = "SELECT * FROM Experts";
+		var profile = 'expert';
+		var multiple = true;
+		if (this.expertID[0] != ""){
+			query += " WHERE FirstName = ? AND LastName = ?";
+			profile = 'selected_expert';
+			multiple = false;
+		}
+		sqlObj.setQuery(query, [this.expertID[0], this.expertID[1]]);
 		sqlObj.executeQuery(profile, rendObj, multiple);
 	}
 
