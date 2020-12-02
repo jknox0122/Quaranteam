@@ -3,141 +3,145 @@
 <link href="/public/style.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="frame">
-  <main class="main">
-      <nav>
-          <div hidden id="ID">{{selected_expert.ExpertID}}</div>
-          <div class="name">
-              <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
-          </div>
-          <div class="profile_pic">
-              <p1><img src="/uploads/{{selected_expert.ProfilePicture}}" style="height:auto;width:auto;max-width:300px;max-height:300px;"></p1>
-              <br>
-              <br>
-              <p1>About: {{selected_expert.About}}</p1>
-              <br>
-              <br>
-          </div>
-          <div class="profile_info">
-              <p1>Email: {{selected_expert.ProfileEmail}}</p1>
-              <br>
-              <br>
-              
-              <a href="http://www.twitter.com/{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
-              &nbsp
-              <a href="http://www.linkedin.com/in/{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
-              &nbsp
-              <div class="tooltip">
-                <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github" onmouseover="executeFun('{{selected_expert.GithubLink}}')"></a>
-                <span id="tooltip{{selected_expert.GithubLink}}" class="tooltiptext"></span>
-              </div>
-              <input type="hidden" id="gitLink" value="{{selected_expert.GithubLink}}">
-              &nbsp
-              <a class="btn btn-primary btn-sm" href="/experts/update/{{selected_expert.ExpertID}}" role="button">Update</a>
-          </div>
-      </nav>
-      <body>
-                  
+    <main class="main">
+        <nav>
+            <div hidden id="ID">{{selected_expert.ExpertID}}</div>
+            <div class="name">
+                <h1>{{selected_expert.FirstName}} {{selected_expert.LastName}}</h1>
+            </div>
+            <div class="profile_pic">
+                <p1><img src="/uploads/{{selected_expert.ProfilePicture}}" style="height:auto;width:auto;max-width:300px;max-height:300px;"></p1>
+                <br>
+                <br>
+                <p1>About: {{selected_expert.About}}</p1>
+                <br>
+                <br>
+            </div>
+            <div class="profile_info">
+                <p1>Email: {{selected_expert.ProfileEmail}}</p1>
+                <br>
+                <br>
+
+                <a href="http://www.twitter.com/{{selected_expert.TwitterLink}}" class="fa fa-twitter"></a>
+                &nbsp
+                <a href="http://www.linkedin.com/in/{{selected_expert.LinkedInLink}}" class="fa fa-linkedin"></a>
+                &nbsp
+                <div class="tooltip">
+                    <a href="http://www.github.com/{{selected_expert.GithubLink}}" class="fa fa-github" onmouseover="executeFun('{{selected_expert.GithubLink}}')"></a>
+                    <span id="tooltip{{selected_expert.GithubLink}}" class="tooltiptext"></span>
+                </div>
+                <input type="hidden" id="gitLink" value="{{selected_expert.GithubLink}}">
+                &nbsp
+                <a class="btn btn-primary btn-sm" href="/experts/update/{{selected_expert.ExpertID}}" role="button">Update</a>
+            </div>
+        </nav>
+        <body>
 
 
-        </div>
-          <div class="table_container">
-              <div>
-                  <br>
-                  <table class='skills'>
-                      <caption class="results-table-header-label">Technical Skills</caption>
-    
-                      {{#each profile_skill}}
-                      <tr>
-                          <td>{{name}}</td>
-                          <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
-                      </tr>
-                      {{/each}}
-                  </table>
-              </div>
-              {{#if profile_industry.length}}
-             
-              <div >
-                  <br>
-                  <table class='skills'>
-                      <caption class="results-table-header-label">Industries</caption>
-                      {{#each profile_industry}}
-                      <tr>
-                          <td>{{name}}</td>
-                          <td>{{Experience}} years</td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
 
-                      </tr>
-                      {{/each}}
-                  </table>
-              </div>
-              {{/if}}
-              {{#if profile_course.length}}
-              <div>
-                  <br>
-                  <table class='skills'>
-                      <caption class="results-table-header-label">Courses</caption>
-                      {{#each profile_course}}
+</div>
 
-                      <tr>
-                          <td>{{name}}</td>
-                          <td></td>
-                          <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
+<div class="table_container">
+    {{#if profile_skill.length}}
+    <div>
+        <br>
+        <table class='skills'>
+            <caption class="results-table-header-label">Technical Skills</caption>
 
-                      </tr>
-                      {{/each}}
-                  </table>
-              </div>
-              {{/if}}
-          </div>
+            {{#each profile_skill}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{Experience}} years</td>
+                <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/if}}
+    {{#if profile_industry.length}}
 
-           <button type="button" onclick="document.getElementById('add-expert-skill').style.visibility = 'visible'"> Add Skill </button>
+    <div>
+        <br>
+        <table class='skills'>
+            <caption class="results-table-header-label">Industries</caption>
+            {{#each profile_industry}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{Experience}} years</td>
+                <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
 
-          <div id="add-expert-skill" style="visibility: hidden;">
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/if}}
+    {{#if profile_course.length}}
+    <div>
+        <br>
+        <table class='skills'>
+            <caption class="results-table-header-label">Courses</caption>
+            {{#each profile_course}}
 
-    <form class='form' id="add-skill" action="/experts/view" method="post" >
+            <tr>
+                <td>{{name}}</td>
+                <td></td>
+                <td><a class="btn btn-primary btn-sm" href="/experts/update-skill/{{ExpertID}}/{{ExpertSkillsID}}" role="button">Update</a></td>
 
-<label for="category">Categories</label><br />
-            <select id="add_category" name="category"">
-                {{#each category}}
-                <option value='{{id}}'>{{name}}</option>
-                {{/each}}
-            </select><br />
-            <label>Skills:</label><br />
-            <select id="add_skills" name="skill">
-                {{#each skill}}
-                <option  value='{{id}}'>{{name}}</option>
-                {{/each}}
-            </select>
-            <select hidden id="add_industry" name="industry">
-                {{#each industry}}
-                <option value="{{id}}">{{name}}</option>
-                {{/each}}
-            </select>
-            <select hidden id="add_course" name="course">
-                {{#each course}}
-                <option value="{{id}}">{{name}}</option>
-                {{/each}}
-            </select>
-            <br />
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/if}}
+</div>
+
+<button type="button" onclick="document.getElementById('add-expert-skill').style.visibility = 'visible'"> Add Skill </button>
+
+<div id="add-expert-skill" style="visibility: hidden;">
+
+    <form class='form' id="add-skill" action="/experts/view" method="post">
+
+        <label for="category">Categories</label><br />
+        <select id="add_category" name="category" ">
+            {{#each category}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select><br />
+        <label>Skills:</label><br />
+        <select id="add_skills" name="skill">
+            {{#each skill}}
+            <option value='{{id}}'>{{name}}</option>
+            {{/each}}
+        </select>
+        <select hidden id="add_industry" name="industry">
+            {{#each industry}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <select hidden id="add_course" name="course">
+            {{#each course}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>
+        <br />
+        <div id="add_experience">
             <label>Experience (years)</label><br />
             <input type="number" id="add_experience" name="Experience">
+        </div>
+        <input type="hidden" id="ExpertID" name="ExpertID" value="{{selected_expert.ExpertID}}">
+        <!-- <input type="hidden" id="ExpertSkillsID" name="ExpertSkillsID" value="{{ExpertSkillsID}}"> -->
+        <input type="hidden" name="ExpertSkillsID" id="skillIDSelected" value="1">
+        <br>
+    </form>
 
-            <input type="hidden" id="ExpertID" name="ExpertID" value="{{selected_expert.ExpertID}}">
-            <!-- <input type="hidden" id="ExpertSkillsID" name="ExpertSkillsID" value="{{ExpertSkillsID}}"> -->
-            <input type="hidden" name="ExpertSkillsID" id="skillIDSelected" value = "1">
-            <br>
-        </form>
 
 
-
-          <button class="btn btn-secondary" onclick="addExpertSkill({{selected_expert.ExpertID}})">ADD</button>
+    <button class="btn btn-secondary" onclick="addExpertSkill({{selected_expert.ExpertID}})">ADD</button>
 
     <script src="/updateExpert.js">
 
 
     </script>
 
-      </body>
+    </body>
 
-</main>
+    </main>

@@ -38,9 +38,10 @@
 
              <label>Skill:</label>            
                 <input type="text" name="name" class="form-control" value="{{update_skill.name}}" style="width: 200px; height: 20px; margin-right: 20px" >
-
-                <label>Experience:</label>
-                <input type="text" name="Experience" class="form-control" value="{{update_skill.Experience}}" style="width: 100px; height: 20px;">
+                <div id="update_experience">
+                    <label>Experience:</label>
+                    <input type="text" name="Experience" class="form-control" value="{{update_skill.Experience}}" style="width: 100px; height: 20px;">
+                </div>
                 <input type="hidden" id="ExpertID" name="ExpertID" value="{{update_skill.ExpertID}}">
                 <input type="hidden" id="ExpertSkillsID" name="ExpertSkillsID" value="{{update_skill.ExpertSkillsID}}">
                 <br>

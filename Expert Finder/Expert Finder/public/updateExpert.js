@@ -47,6 +47,7 @@ var mydropdown2 = document.getElementById('add_industry');
 var mydropdown3 = document.getElementById('add_course');
 
 categorydropdown = document.getElementById('add_category');
+experience = document.getElementById('add_experience')
 
 categorydropdown.onchange = function () {
     var cat = this.value;
@@ -54,18 +55,22 @@ categorydropdown.onchange = function () {
         mydropdown.hidden = false;
         mydropdown2.hidden = true;
         mydropdown3.hidden = true;
+        experience.hidden = false;
         mytextbox.value = mydropdown.value; //to appened
     }
     else if (cat == 2) {
         mydropdown.hidden = true;
         mydropdown2.hidden = false;
         mydropdown3.hidden = true;
+        experience.hidden = false;
         mytextbox.value = mydropdown2.value; //to appened
     }
     else if (cat == 3) {
         mydropdown.hidden = true;
         mydropdown2.hidden = true;
         mydropdown3.hidden = false;
+        experience.hidden = true;
+        experience.value = '';
         mytextbox.value = mydropdown3.value; //to appened
     }
 }
