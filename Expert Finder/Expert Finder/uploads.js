@@ -41,6 +41,7 @@ module.exports = function () {
 		expObj.getExpertsByName(rendObj, sqlObj);
        // res.render('./photo-upload');
     });
+    
     router.post('/upload/:id', (req,res) => {
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Experts SET ProfilePicture = ? WHERE ExpertID = ?";

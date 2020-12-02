@@ -117,10 +117,10 @@ module.exports = function () {
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Experts SET Experts.FirstName=?, Experts.LastName=?, Experts.ProfileEmail=?, Experts.About=?, " + 
-        		   "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=?, Experts.ProfilePicture=? WHERE Experts.ExpertID=?";
+        		   "Experts.GithubLink=?, Experts.LinkedInLink=?, Experts.TwitterLink=? WHERE Experts.ExpertID=?";
 
         var inserts = [req.body.FirstName,req.body.LastName, req.body.ProfileEmail, req.body.About, req.body.GithubLink,  
-        				req.body.LinkedInLink,  req.body.TwitterLink, req.body.ProfilePicture, req.params.id];
+        				req.body.LinkedInLink,  req.body.TwitterLink, req.params.id];
 
         console.log("INSERTS: " + inserts);
 
