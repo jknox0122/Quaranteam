@@ -2,9 +2,9 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
-	let skills = require('./skills.js');
+	let skills = require('./Skills.js');
 	let exp = require('./expert.js');
-	let rend = require('./renderer.js');
+	let rend = require('./Renderer.js');
 
 	// Get skill info to display on the page
 	router.get('/', function (req, res) {

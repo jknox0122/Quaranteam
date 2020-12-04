@@ -2,8 +2,8 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
-	let skills = require('./skills.js');
-	let rend = require('./renderer.js');
+	let skills = require('./Skills.js');
+	let rend = require('./Renderer.js');
 
 	// Display the skills currently in the database so the user can select the skill and search on it.
 	router.get('/', function (req, res) {

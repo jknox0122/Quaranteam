@@ -2,9 +2,9 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');	// Page render and database interface
-	let skills = require('./skills.js');		// Skills class obj
+	let skills = require('./Skills.js');		// Skills class obj
 	let expert = require('./expert.js');		// Expert class obj
-    let rend = require('./renderer.js');
+    let rend = require('./Renderer.js');
     let upload = require('./server.js');
     /*router.get('/', function (req, res) {
 		res.render('photo-upload');

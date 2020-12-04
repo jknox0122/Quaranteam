@@ -45,10 +45,10 @@ function addExpert() {
         expert['twitter'] = twitter;
     }
 
-    var profilePic = document.getElementById('profilePic').value;
-    if (profilePic != ""){
-        expert['ProfilePicture'] = profilePic;
-    }
+    // var profilePic = document.getElementById('profilePic').value;
+    // if (profilePic != ""){
+    //     expert['ProfilePicture'] = profilePic;
+    // }
     $.ajax({
         url: '/add-expert',
         type: 'PUT',

@@ -4,8 +4,8 @@ module.exports = function () {
 	var express = require('express');
 	var router = express.Router();
 	let sqlC = require('./sqlController.js');
-	let skills = require('./skills.js');
-	let rend = require('./renderer.js');
+	let skills = require('./Skills.js');
+	let rend = require('./Renderer.js');
 
 	// Displays the home page
 	router.get('/', function (req, res) {
